@@ -1,0 +1,59 @@
+[33mcommit 244cba8a32990a91e30419150b880411caf08f34[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: simonrahtz <simonrahtz@gmail.com>
+Date:   Tue Sep 28 15:06:20 2021 +1000
+
+    Publish Json file to web
+
+[33mcommit b3a8855be1449ccb6ba98198c69ba7e67285552d[m
+Author: simonrahtz <simonrahtz@gmail.com>
+Date:   Sat Sep 25 16:01:20 2021 +1000
+
+    stop removed
+
+[33mcommit 84f1149e266c6ac2b6262dca82755aa6d63be217[m
+Author: simonrahtz <simonrahtz@gmail.com>
+Date:   Sat Sep 25 16:00:07 2021 +1000
+
+    untracked file
+
+[33mcommit 7f473578981f359dce27f812e266d48f730b4a92[m
+Author: simonrahtz <simonrahtz@gmail.com>
+Date:   Sat Sep 25 15:54:14 2021 +1000
+
+    removed test 2
+
+[33mcommit 5c0fdb68cd73cd2594fcfab0866f3f47eda22627[m
+Author: simonrahtz <simonrahtz@gmail.com>
+Date:   Sat Sep 25 15:52:28 2021 +1000
+
+    test file added
+
+[33mcommit 46cd5a1f2d78cc738db8f66b215e7656b632aecb[m
+Author: simonrahtz <simonrahtz@gmail.com>
+Date:   Sat Sep 25 15:46:44 2021 +1000
+
+    deleted test file
+
+[33mcommit 198a21bfaabccca246f9d77200faa6b4a033a1a1[m
+Author: simonrahtz <simonrahtz@gmail.com>
+Date:   Sat Sep 25 15:22:33 2021 +1000
+
+    Web_API version 1.0
+
+[33mcommit 1eea5a9ce9bc4c6c7ccb00958bdb50f9fee0b7fa[m
+Author: simonrahtz <simonrahtz@gmail.com>
+Date:   Sat Sep 25 15:01:28 2021 +1000
+
+    First commit
+
+[33mcommit 1a728c885e67a03d506c5afc0c419ccaf23f5f7b[m
+Author: simonrahtz <simonrahtz@gmail.com>
+Date:   Sat Aug 14 20:00:31 2021 +1000
+
+    Update README
+
+[33mcommit c56272d4e1109f57160da7ac3388fcf381bf6481[m
+Author: github-classroom[bot] <66690702+github-classroom[bot]@users.noreply.github.com>
+Date:   Sat Aug 14 09:55:29 2021 +0000
+
+    Initial commit
