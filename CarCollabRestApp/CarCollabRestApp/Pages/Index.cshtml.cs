@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CarCollabRestApp.Models;
+using CarCollabRestApp.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,16 +13,19 @@ namespace CarCollabRestApp.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        public JsonFileProductsService ProductService;
+        public IEnumerable<Product> Products { get; private set; }
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger,
+            JsonFileProductsService productsService)
         {
             _logger = logger;
+            ProductService = productsService;
         }
 
         public void OnGet()
         {
-            String name;
-
+            Products = ProductService.GetProducts();
         }
     }
 }
