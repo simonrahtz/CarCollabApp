@@ -6,9 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.test.sharecar.activities.Activity1
+import com.test.sharecar.activities.UserCarsActivity
 import com.test.sharecar.databinding.FragmentUserBinding
-import com.test.sharecar.expandfuns.showToast
 
 
 class UserFragment : Fragment() {
@@ -29,7 +28,7 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.tableLayout.setOnClickListener {
-            val intent = Intent(requireActivity(), Activity1::class.java)
+            val intent = Intent(requireActivity(), UserCarsActivity::class.java)
             startActivity(intent)
         }
     }

@@ -24,14 +24,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initEvent() {
-        binding.ivBroswer.setOnClickListener(this)
+        binding.ivBrowser.setOnClickListener(this)
         binding.ivCars.setOnClickListener(this)
         binding.ivUser.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when(v) {
-            binding.ivBroswer -> {
+            binding.ivBrowser -> {
                 navController.navigate(R.id.browseFragment)
             }
             binding.ivCars -> {

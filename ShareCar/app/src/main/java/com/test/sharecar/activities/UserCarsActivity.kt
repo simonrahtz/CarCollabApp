@@ -3,18 +3,18 @@ package com.test.sharecar.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.test.sharecar.databinding.Activity1Binding
+import com.test.sharecar.databinding.ActivityUserCarsBinding
 
-class Activity1 : AppCompatActivity() {
+class UserCarsActivity : AppCompatActivity() {
 
-    private lateinit var binding: Activity1Binding
+    private lateinit var binding: ActivityUserCarsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = Activity1Binding.inflate(layoutInflater)
+        binding = ActivityUserCarsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.btnAdd.setOnClickListener {
-            startActivity(Intent(this, Activity2::class.java))
+            startActivity(Intent(this, EnterCarActivity::class.java))
         }
     }
 

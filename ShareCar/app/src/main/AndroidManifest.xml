@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareCar">
         <activity
-            android:name=".activities.Activity1"
+            android:name=".activities.UserCarsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Activity2"
+            android:name=".activities.EnterCarActivity"
             android:exported="false" />
         <activity
             android:name=".activities.Activity3"
             android:exported="false" />
         <activity
-            android:name=".activities.Activity4"
+            android:name=".activities.CarConfirmationActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

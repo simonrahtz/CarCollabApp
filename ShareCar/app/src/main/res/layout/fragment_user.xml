@@ -49,7 +49,7 @@
                 android:layout_weight="1"
                 android:gravity="center"/>
             <TextView
-                android:text="Orders"
+                android:text="Bookings"
                 android:padding="3dp"
                 android:layout_weight="1"
                 android:gravity="center"

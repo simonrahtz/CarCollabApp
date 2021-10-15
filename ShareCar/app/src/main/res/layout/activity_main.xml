@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:background="#87CEFA">
         <TextView
-            android:id="@+id/iv_broswer"
+            android:id="@+id/iv_browser"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
