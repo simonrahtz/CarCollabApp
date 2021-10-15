@@ -14,7 +14,7 @@ class Activity2 : AppCompatActivity() {
         binding = Activity2Binding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.btnAdd.setOnClickListener {
-            startActivity(Intent(this, Activity3::class.java))
+            startActivity(Intent(this, CarConfirmationActivity::class.java))
         }
     }
 
