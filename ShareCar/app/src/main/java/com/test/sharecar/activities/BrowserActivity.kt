@@ -1,19 +1,20 @@
-package com.test.sharecar
+package com.test.sharecar.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.test.sharecar.databinding.ActivityMainBinding
+import com.test.sharecar.R
+import com.test.sharecar.databinding.ActivityBrowseBinding
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
-    private lateinit var binding: ActivityMainBinding
+class BrowserActivity : AppCompatActivity(), View.OnClickListener {
+    private lateinit var binding: ActivityBrowseBinding
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityBrowseBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initEvent()
     }

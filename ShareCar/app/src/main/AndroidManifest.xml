@@ -16,13 +16,13 @@
             android:name=".activities.EnterCarActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Activity3"
-            android:exported="false" />
-        <activity
             android:name=".activities.CarConfirmationActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.BrowserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
