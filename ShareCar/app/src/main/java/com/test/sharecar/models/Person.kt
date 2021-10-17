@@ -5,6 +5,9 @@ abstract class Person {
 
 class User : Person(){
 
+
+
+
 }
 
 class Admin : Person(){

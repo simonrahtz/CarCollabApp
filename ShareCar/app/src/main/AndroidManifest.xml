@@ -10,13 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareCar">
         <activity
+            android:name=".activities.user.LogInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_log_in"
+            android:exported="false"
+            android:label="@string/title_activity_log_in"
+            android:theme="@style/Theme.ShareCar.NoActionBar" />
+        <activity
             android:name=".activities.UserCarsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.EnterCarActivity"
+            android:name=".activities.car.EnterCarActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.CarConfirmationActivity"
+            android:name=".activities.car.CarConfirmationActivity"
             android:exported="false" />
         <activity
             android:name=".activities.BrowserActivity"
@@ -30,7 +38,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
