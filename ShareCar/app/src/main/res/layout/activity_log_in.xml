@@ -22,7 +22,6 @@
         android:text="Enter your details"/>
 
 
-
     <TextView
         android:id="@+id/name_text"
         android:layout_width="wrap_content"
@@ -34,9 +33,8 @@
 
     <EditText
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
-        android:id="@+id/first_name"
+        android:id="@+id/name"
         app:layout_constraintTop_toBottomOf="@id/name_text"/>
 
     <TextView
@@ -46,7 +44,7 @@
         android:layout_marginTop="@dimen/field_top_padding"
         android:text="Email"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/first_name" />
+        app:layout_constraintTop_toBottomOf="@id/name" />
 
     <EditText
         android:layout_width="match_parent"
