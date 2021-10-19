@@ -10,7 +10,7 @@ class Person(
     val email: String?,
     val phone: String?,
     val address: String?
-) : Parcelable {
+)  {
 
     private val cars = mutableListOf<Car>()
     lateinit var userName: String
@@ -34,27 +34,9 @@ class Person(
         return cars
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeString(name)
-        parcel.writeString(email)
-        parcel.writeString(phone)
-        parcel.writeString(address)
-    }
 
-    override fun describeContents(): Int {
-        return 0
-    }
 
-    companion object CREATOR : Parcelable.Creator<Person> {
-        override fun createFromParcel(parcel: Parcel): Person {
-            return Person(parcel)
-        }
 
-        override fun newArray(size: Int): Array<Person?> {
-            return arrayOfNulls(size)
-        }
-    }
 
 
 }

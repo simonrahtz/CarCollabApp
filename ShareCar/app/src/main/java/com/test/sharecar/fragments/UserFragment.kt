@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.test.sharecar.DataCache
 import com.test.sharecar.activities.user.UserCarsActivity
 import com.test.sharecar.databinding.FragmentUserBinding
 
@@ -15,14 +16,19 @@ class UserFragment : Fragment() {
 
     // this property only exist between viewCreated and viewDestroyed
     private val binding: FragmentUserBinding get() = _binding!!
+    private val cache = DataCache
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View {
         _binding = FragmentUserBinding.inflate(layoutInflater)
+        //set username to username in cache
+        binding.username.text = cache.currentUser[0]?.name.toString()
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

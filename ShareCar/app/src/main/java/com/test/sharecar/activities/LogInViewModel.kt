@@ -1,6 +1,7 @@
 package com.test.sharecar.activities
 
 import androidx.lifecycle.ViewModel
+import com.test.sharecar.DataCache
 import com.test.sharecar.models.Person
 
 class LogInViewModel: ViewModel() {
@@ -11,11 +12,18 @@ class LogInViewModel: ViewModel() {
                      name: String,
                      email: String,
                      phone: String,
-                     address: String): Person
+                     address: String)
     {
-        return Person(id,name,email,phone,address)
+        //store user in cache
+        DataCache.currentUser[id] = Person(id,name,email,phone,address)
+
+        //increment id to keep it unique
         id++
     }
+
+
+
+
 
 
 

@@ -3,6 +3,7 @@ package com.test.sharecar.activities.user
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.test.sharecar.DataCache
 import com.test.sharecar.R
 import com.test.sharecar.activities.BrowserActivity
 import com.test.sharecar.databinding.ActivityConfirmUserDetailsBinding
@@ -16,7 +17,8 @@ class ConfirmUserDetailsActivity : AppCompatActivity() {
         binding = ActivityConfirmUserDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val person = intent.getParcelableExtra<Person>("user")
+        //get first user from map
+        val person = DataCache.currentUser[0]
 
         with(binding){
             name.text = person?.name

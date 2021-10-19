@@ -21,16 +21,14 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.createUserButton.setOnClickListener()
         {
-            val person = viewModel.createPerson(
+            viewModel.createPerson(
                 binding.name.text.toString(),
                 binding.enterEmail.text.toString(),
                 binding.enterPhone.text.toString(),
                 binding.enterAddress.text.toString())
 
-            val intent = Intent(this, ConfirmUserDetailsActivity::class.java)
-                .putExtra("user",person)
-
-            startActivity(intent)
+            startActivity(Intent(this, ConfirmUserDetailsActivity::class.java))
+            finish()
 
         }
     }
