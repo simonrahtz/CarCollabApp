@@ -3,6 +3,7 @@ package com.test.sharecar.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.test.sharecar.R
@@ -17,6 +18,7 @@ class BrowserActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityBrowseBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initEvent()
+
     }
 
     override fun onResume() {

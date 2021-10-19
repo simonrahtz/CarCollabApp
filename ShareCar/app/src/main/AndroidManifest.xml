@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareCar">
         <activity
-            android:name=".activities.user.LogInActivity"
+            android:name=".activities.user.ConfirmUserDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.user.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".activity_log_in"
@@ -18,7 +21,7 @@
             android:label="@string/title_activity_log_in"
             android:theme="@style/Theme.ShareCar.NoActionBar" />
         <activity
-            android:name=".activities.UserCarsActivity"
+            android:name=".activities.user.UserCarsActivity"
             android:exported="false" />
         <activity
             android:name=".activities.car.EnterCarActivity"

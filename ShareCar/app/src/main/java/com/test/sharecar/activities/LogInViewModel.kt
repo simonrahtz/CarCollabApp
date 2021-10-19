@@ -1,11 +1,11 @@
-package com.test.sharecar.activities.user
+package com.test.sharecar.activities
 
 import androidx.lifecycle.ViewModel
 import com.test.sharecar.models.Person
 
-class LoginActivityViewModel: ViewModel() {
+class LogInViewModel: ViewModel() {
 
-    var id = 0
+    private var id = 0
 
     fun createPerson(
                      name: String,
@@ -13,9 +13,16 @@ class LoginActivityViewModel: ViewModel() {
                      phone: String,
                      address: String): Person
     {
-        id++
         return Person(id,name,email,phone,address)
+        id++
     }
+
+
+
+
+
+
+
 
 
 }

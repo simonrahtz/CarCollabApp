@@ -1,4 +1,4 @@
-package com.test.sharecar.activities
+package com.test.sharecar.activities.user
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +14,7 @@ class UserCarsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUserCarsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.btnAdd.setOnClickListener {
             startActivity(Intent(this, EnterCarActivity::class.java))
         }
