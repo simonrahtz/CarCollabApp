@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 
-data class Person(
+class Person(
     val id: Int,
     val name: String?,
     val email: String?,
@@ -13,6 +13,7 @@ data class Person(
 ) : Parcelable {
 
     private val cars = mutableListOf<Car>()
+    lateinit var userName: String
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),

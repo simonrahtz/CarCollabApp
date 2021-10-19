@@ -17,7 +17,6 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val viewModel = ViewModelProvider(this).get(LogInViewModel::class.java)
 
         binding.createUserButton.setOnClickListener()

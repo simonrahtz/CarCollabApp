@@ -18,12 +18,14 @@ class ConfirmUserDetailsActivity : AppCompatActivity() {
 
         val person = intent.getParcelableExtra<Person>("user")
 
-        binding.name.text = person?.name
-        binding.address.text = person?.address
-        binding.email.text = person?.email
-        binding.phone.text = person?.phone
+        with(binding){
+            name.text = person?.name
+            address.text = person?.address
+            email.text = person?.email
+            phone.text = person?.phone}
 
-        binding.confirmDetails.setOnClickListener() {
+
+        binding.confirmDetails.setOnClickListener {
 
         startActivity(Intent(this, BrowserActivity::class.java))
         }
