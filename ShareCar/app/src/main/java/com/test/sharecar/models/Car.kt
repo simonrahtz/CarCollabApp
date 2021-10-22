@@ -1,4 +1,4 @@
 package com.test.sharecar.models
 
-class Car {
+class Car () {
 }

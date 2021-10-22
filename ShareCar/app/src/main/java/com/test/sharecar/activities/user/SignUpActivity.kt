@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.test.sharecar.activities.LogInViewModel
+import com.test.sharecar.activities.SignUpViewModel
 import com.test.sharecar.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewModel = ViewModelProvider(this).get(LogInViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
 
         binding.createUserButton.setOnClickListener()
         {

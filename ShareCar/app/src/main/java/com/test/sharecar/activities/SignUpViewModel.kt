@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.test.sharecar.DataCache
 import com.test.sharecar.models.Person
 
-class LogInViewModel: ViewModel() {
+class SignUpViewModel: ViewModel() {
 
     private var id = 0
 
