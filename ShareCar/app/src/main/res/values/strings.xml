@@ -13,4 +13,11 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- Cars -->
+    <string name="car1">Mazda 626 1998</string>
+    <string name="car2">Jeep Wrangler 2005</string>
+    <string name="car3">Honda Integra 2000</string>
+
+
+
 </resources>

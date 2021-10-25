@@ -1,14 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.BrowseFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-         />
+    <!-- This layout is purely for display purposes only, layout should use scrollable list
+  with car objects-->
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/carsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Browse Cars"
+        android:textSize="@dimen/heading_extra_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/car1_image"
+        android:layout_width="@dimen/default_image_size"
+        android:layout_height="@dimen/default_image_size"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carsTitle"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/car2_image"
+        android:layout_width="@dimen/default_image_size"
+        android:layout_height="@dimen/default_image_size"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/car1_image"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/car3_image"
+        android:layout_width="@dimen/default_image_size"
+        android:layout_height="@dimen/default_image_size"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/car2_image"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/car1text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/car1"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/car1_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/car1_image"
+        app:layout_constraintTop_toTopOf="@+id/car1_image" />
+
+    <TextView
+        android:id="@+id/car2text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/car2"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/car2_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/car2_image"
+        app:layout_constraintTop_toTopOf="@+id/car2_image" />
+
+    <TextView
+        android:id="@+id/car3text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/car3"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/car3_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/car3_image"
+        app:layout_constraintTop_toTopOf="@+id/car3_image" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
