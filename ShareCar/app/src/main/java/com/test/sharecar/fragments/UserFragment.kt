@@ -35,7 +35,7 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tableLayout.setOnClickListener {
+        binding.enterCar.setOnClickListener {
             val intent = Intent(requireActivity(), UserCarsActivity::class.java)
             startActivity(intent)
         }
