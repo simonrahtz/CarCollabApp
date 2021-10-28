@@ -15,14 +15,6 @@ class Person(
     private val cars = mutableListOf<Car>()
     lateinit var userName: String
 
-    constructor(parcel: Parcel) : this(
-        parcel.readInt(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString()
-    ) {
-    }
 
     fun addCar(car: Car): Person
     {

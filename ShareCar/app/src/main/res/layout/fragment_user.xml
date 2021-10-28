@@ -56,11 +56,13 @@
                />
         </TableRow>
         <TableRow>
+
             <TextView
-                android:text="0"
-                android:padding="3dp"
+                android:id="@+id/no_of_cars"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="0" />
             <TextView
                 android:text="0"
                 android:padding="3dp"
