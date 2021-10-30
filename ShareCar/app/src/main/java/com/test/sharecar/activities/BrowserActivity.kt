@@ -9,6 +9,9 @@ import androidx.navigation.Navigation
 import com.test.sharecar.R
 import com.test.sharecar.databinding.ActivityBrowseBinding
 
+/**
+ * Activity container for browse, car and user fragments with bottom screen navigation
+ */
 class BrowserActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityBrowseBinding
     private lateinit var navController: NavController

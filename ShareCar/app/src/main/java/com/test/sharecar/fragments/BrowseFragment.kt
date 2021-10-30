@@ -8,13 +8,15 @@ import android.view.ViewGroup
 import com.test.sharecar.DataCache
 import com.test.sharecar.R
 import com.test.sharecar.databinding.FragmentBrowseBinding
-
-
+/**
+ * Display all available cars. May be modified to display single car
+ * as per the client feedback
+ */
 class BrowseFragment : Fragment() {
 
     private var _binding: FragmentBrowseBinding? = null
 
-    // this property only exist between viewCreated and viewDestroyed
+    // this property only exists between viewCreated and viewDestroyed
     private val binding: FragmentBrowseBinding get() = _binding!!
 
     override fun onCreateView(
@@ -28,7 +30,8 @@ class BrowseFragment : Fragment() {
         binding.car1Image.setImageResource(R.drawable.mazda_626)
         binding.car2Image.setImageResource(R.drawable.jeep)
         //set 3rd car to default image when user hasn't uploaded car image
-        binding.car3Image.setImageResource(R.drawable.ic_car)
+        if(DataCache.currentCar.isNotEmpty()){
+            binding.car3Image.setImageResource(R.drawable.ic_car)}
         binding.car3text.text = DataCache.currentCar[0]?.make
 
         return binding.root

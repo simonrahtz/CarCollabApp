@@ -11,7 +11,9 @@ import com.test.sharecar.DataCache
 
 import com.test.sharecar.activities.user.UserCarsActivity
 import com.test.sharecar.databinding.FragmentUserBinding
-
+/**
+ * Current user homepage UI
+ */
 
 class UserFragment : Fragment() {
     private var _binding: FragmentUserBinding? = null

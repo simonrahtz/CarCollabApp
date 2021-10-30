@@ -8,7 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import com.test.sharecar.activities.user.SignUpActivity
 import com.test.sharecar.databinding.ActivityMainBinding
-
+/**
+ * Simple log in screen. No user authentication is being done at this point.
+ * It is purely for demonstration.
+ */
 
 class MainActivity : AppCompatActivity() {
 

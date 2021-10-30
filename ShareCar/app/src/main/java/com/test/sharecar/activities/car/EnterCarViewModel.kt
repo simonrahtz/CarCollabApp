@@ -1,8 +1,9 @@
-package com.test.sharecar.activities
+package com.test.sharecar.activities.car
 
 import androidx.lifecycle.ViewModel
 import com.test.sharecar.DataCache
 import com.test.sharecar.models.Car
+
 
 class EnterCarViewModel: ViewModel() {
 

@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.test.sharecar.activities.SignUpViewModel
 import com.test.sharecar.databinding.ActivitySignUpBinding
 
+/**
+ * Handles user input to complete sign up
+ */
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignUpBinding
@@ -19,6 +21,7 @@ class SignUpActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
 
+        //create person object from user input
         binding.createUserButton.setOnClickListener()
         {
             viewModel.createPerson(

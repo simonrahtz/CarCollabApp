@@ -8,7 +8,9 @@ import com.test.sharecar.R
 import com.test.sharecar.activities.BrowserActivity
 import com.test.sharecar.databinding.ActivityConfirmUserDetailsBinding
 import com.test.sharecar.models.Person
-
+/**
+ * Class that handles displaying details back to the user for confirmation
+ */
 class ConfirmUserDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityConfirmUserDetailsBinding
 
@@ -17,9 +19,10 @@ class ConfirmUserDetailsActivity : AppCompatActivity() {
         binding = ActivityConfirmUserDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //get first user from map
+        //get current user
         val person = DataCache.currentUser[0]
 
+        //Display current user to screen
         with(binding){
             name.text = person?.name
             address.text = person?.address
@@ -28,7 +31,6 @@ class ConfirmUserDetailsActivity : AppCompatActivity() {
 
 
         binding.confirmDetails.setOnClickListener {
-
         startActivity(Intent(this, BrowserActivity::class.java))
         }
 

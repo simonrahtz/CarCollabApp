@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.test.sharecar.activities.EnterCarViewModel
 import com.test.sharecar.databinding.ActivityEnterCarBinding
 
+/**
+ * Handles UI to add a car
+ */
 class EnterCarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEnterCarBinding
@@ -22,9 +24,10 @@ class EnterCarActivity : AppCompatActivity() {
 
             viewModel.createCar(
                 binding.etRegNo.text.toString(),
-            binding.etMake.text.toString(),
-            binding.etModel.text.toString(),
-            binding.etRegDueDate.text.toString())
+                binding.etMake.text.toString(),
+                binding.etModel.text.toString(),
+                binding.etRegDueDate.text.toString()
+            )
 
             startActivity(Intent(this, CarConfirmationActivity::class.java))
         }

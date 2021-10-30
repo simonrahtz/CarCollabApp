@@ -12,9 +12,9 @@ import com.test.sharecar.models.Person
 
 
 object DataCache {
-
+    //list of users in system
     val currentUser = mutableMapOf<Int, Person>()
 
-    //add a list of cars here
+    //List of cars in system
     val currentCar = mutableMapOf<Int, Car>()
 }

@@ -1,4 +1,4 @@
-package com.test.sharecar.activities
+package com.test.sharecar.activities.user
 
 import androidx.lifecycle.ViewModel
 import com.test.sharecar.DataCache
