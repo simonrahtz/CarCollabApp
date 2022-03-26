@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activities.user.ConfirmUserDetailsActivity">
+    tools:context=".presentation.activities.user.ConfirmUserDetailsActivity">
 
     <TextView
         android:id="@+id/user_profile_message"

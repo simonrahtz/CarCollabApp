@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareCar">
         <activity
-            android:name=".activities.user.ConfirmUserDetailsActivity"
+            android:name="com.test.sharecar.presentation.activities.user.ConfirmUserDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.user.SignUpActivity"
+            android:name="com.test.sharecar.presentation.activities.user.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".activity_log_in"
@@ -21,19 +21,19 @@
             android:label="@string/title_activity_log_in"
             android:theme="@style/Theme.ShareCar.NoActionBar" />
         <activity
-            android:name=".activities.user.UserCarsActivity"
+            android:name="com.test.sharecar.presentation.activities.user.UserCarsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.car.EnterCarActivity"
+            android:name="com.test.sharecar.presentation.activities.car.EnterCarActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.car.CarConfirmationActivity"
+            android:name="com.test.sharecar.presentation.activities.car.CarConfirmationActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.BrowserActivity"
+            android:name="com.test.sharecar.presentation.activities.BrowserActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.test.sharecar.presentation.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

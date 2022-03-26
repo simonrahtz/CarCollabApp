@@ -1,9 +1,8 @@
-package com.test.sharecar.activities
+package com.test.sharecar.presentation.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.test.sharecar.R

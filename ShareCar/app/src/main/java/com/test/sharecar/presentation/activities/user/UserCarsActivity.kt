@@ -1,9 +1,9 @@
-package com.test.sharecar.activities.user
+package com.test.sharecar.presentation.activities.user
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.test.sharecar.activities.car.EnterCarActivity
+import com.test.sharecar.presentation.activities.car.EnterCarActivity
 import com.test.sharecar.databinding.ActivityUserCarsBinding
 
 /**

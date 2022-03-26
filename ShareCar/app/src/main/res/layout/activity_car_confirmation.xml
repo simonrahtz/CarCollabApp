@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".activities.car.CarConfirmationActivity">
+    tools:context=".presentation.activities.car.CarConfirmationActivity">
 
     <TextView
         android:id="@+id/car_profile_message"

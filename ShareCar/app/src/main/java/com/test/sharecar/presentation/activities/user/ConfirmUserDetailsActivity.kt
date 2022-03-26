@@ -1,13 +1,12 @@
-package com.test.sharecar.activities.user
+package com.test.sharecar.presentation.activities.user
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.test.sharecar.DataCache
-import com.test.sharecar.R
-import com.test.sharecar.activities.BrowserActivity
+import com.test.sharecar.presentation.activities.BrowserActivity
 import com.test.sharecar.databinding.ActivityConfirmUserDetailsBinding
-import com.test.sharecar.models.Person
+
 /**
  * Class that handles displaying details back to the user for confirmation
  */

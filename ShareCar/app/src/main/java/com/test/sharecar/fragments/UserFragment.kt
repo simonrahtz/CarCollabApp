@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.test.sharecar.DataCache
 
 
-import com.test.sharecar.activities.user.UserCarsActivity
+import com.test.sharecar.presentation.activities.user.UserCarsActivity
 import com.test.sharecar.databinding.FragmentUserBinding
 /**
  * Current user homepage UI

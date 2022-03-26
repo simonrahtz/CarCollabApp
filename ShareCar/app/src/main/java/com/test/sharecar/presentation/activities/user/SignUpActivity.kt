@@ -1,4 +1,4 @@
-package com.test.sharecar.activities.user
+package com.test.sharecar.presentation.activities.user
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
