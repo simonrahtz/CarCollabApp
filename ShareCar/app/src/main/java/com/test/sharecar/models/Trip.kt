@@ -2,16 +2,34 @@ package com.test.sharecar.models
 
 import android.location.Address
 import android.location.Location
+import android.location.LocationManager
 import com.google.android.gms.maps.model.LatLng
 
-class Trip (
-    val tripId: Int,
-    val startAddress: Address,
-    val endAddress: Address
+class Trip(
+    //val tripId: Int,
+    private val startAddress: LatLng,
+    private val endAddress: LatLng
 
         ) {
 
-    private fun calculateDistance (startLocation: Location, endLocation: Location) :Float {
-        return startLocation.distanceTo(endLocation)
+    fun calculateDistance () :Float {
+        return latLngToLocation(startAddress).distanceTo(
+            latLngToLocation(endAddress)
+        )
+
+    }
+    fun getStartAddress(): LatLng {
+        return startAddress
+    }
+
+    fun getEndAddress(): LatLng {
+        return endAddress
+    }
+
+    private fun latLngToLocation(latLng: LatLng): Location {
+        return Location(LocationManager.GPS_PROVIDER).apply {
+            latitude = latLng.latitude
+            longitude = latLng.longitude
+        }
     }
 }

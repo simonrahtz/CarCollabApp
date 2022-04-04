@@ -2,8 +2,6 @@ package com.test.sharecar.presentation
 
 import android.content.Context
 import android.location.Geocoder
-import android.location.Location
-import android.location.LocationManager
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -18,10 +16,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.maps.model.LatLng
+import com.test.sharecar.DataCache
+import com.test.sharecar.models.Trip
 
 @Composable
 fun EnterDestination(navController: NavController){
     val context = LocalContext.current
+    var location = ""
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -43,8 +45,11 @@ fun EnterDestination(navController: NavController){
         verticalArrangement = Arrangement.Center
     ){
         var text by remember { mutableStateOf("") }
-        var location = "8 Parkwood Street, Plumpton"
-        var estimatedKms : String
+
+        //Hardcoded string to be retrieved from car location
+        location = "8 Parkwood Street, Plumpton"
+
+
         OutlinedTextField(
             value = location ,
             onValueChange = {},
@@ -61,7 +66,11 @@ fun EnterDestination(navController: NavController){
         Button(onClick = {
             //take input address and convert to LatLng, then convert that to Location object
             if(text.isNotEmpty())
-            {coordToLocation(geoCoder(text,context))}
+            {
+                DataCache.currentTrip[0] = Trip(
+                    geoCoder(location,context),
+                    geoCoder(text,context))
+            }
             navController.navigate("map")
         },
             modifier = Modifier.padding(top = 20.dp)) {
@@ -71,12 +80,6 @@ fun EnterDestination(navController: NavController){
 
     }
 
-}
-fun coordToLocation(latLng: LatLng): Location {
-    return Location(LocationManager.GPS_PROVIDER).apply {
-        latitude = latLng.latitude
-        longitude = latLng.longitude
-    }
 }
 
 fun geoCoder(address: String, context: Context): LatLng {

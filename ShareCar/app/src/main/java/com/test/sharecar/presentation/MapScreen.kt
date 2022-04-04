@@ -1,5 +1,6 @@
 package com.test.sharecar.presentation
 
+import android.icu.text.CaseMap
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -13,14 +14,18 @@ import androidx.compose.ui.unit.dp
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
+import com.test.sharecar.DataCache
 
 @Composable
 fun MapScreen() {
     Scaffold {
 
-        val destination = LatLng(-33.832990, 151.241040)
+
+        val trip = DataCache.currentTrip[0]
+        val destination = trip?.getEndAddress()
+
         val cameraPositionState = rememberCameraPositionState {
-            position = CameraPosition.fromLatLngZoom(destination,15f)
+            position = destination?.let { it1 -> CameraPosition.fromLatLngZoom(it1,15f) }!!
         }
 
 
@@ -31,6 +36,14 @@ fun MapScreen() {
             cameraPositionState = cameraPositionState,
 
             ){
+            if (destination != null) {
+                Marker(
+                    position = destination,
+                    title = trip.calculateDistance().toString()
+                )
+            }
+
+
 
         }
 
