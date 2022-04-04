@@ -74,6 +74,19 @@ dependencies {
         // UI Tests
         androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.1.1")
 
+    //Navigation
+
+    def nav_version = "2.4.1"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    // Google Maps
+       implementation "com.google.android.gms:play-services-maps:18.0.2"
+       implementation "com.google.maps.android:maps-compose:1.0.0"
+       implementation 'com.google.android.gms:play-services-location:19.0.1'
+
+
+
+
 
 
 

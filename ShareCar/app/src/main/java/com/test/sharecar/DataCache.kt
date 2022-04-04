@@ -2,6 +2,7 @@ package com.test.sharecar
 
 import com.test.sharecar.models.Car
 import com.test.sharecar.models.Person
+import com.test.sharecar.models.Trip
 
 
 /**
@@ -17,6 +18,11 @@ object DataCache {
 
     //List of cars in system
     val currentCar = mutableMapOf<Int, Car>()
+
+    //List of trips in system
+    val currentTrip = mutableMapOf<Int, Trip>()
+
+
 
 
 }
