@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareCar">
         <activity
-            android:name="com.test.sharecar.presentation.activities.user.ConfirmUserDetailsActivity"
+            android:name=".presentation.activities.ActivityLogIn"
             android:exported="false" />
         <activity
-            android:name="com.test.sharecar.presentation.activities.user.SignUpActivity"
+            android:name=".presentation.activities.user.ConfirmUserDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.activities.user.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".activity_log_in"
@@ -21,19 +24,19 @@
             android:label="@string/title_activity_log_in"
             android:theme="@style/Theme.ShareCar.NoActionBar" />
         <activity
-            android:name="com.test.sharecar.presentation.activities.user.UserCarsActivity"
+            android:name=".presentation.activities.user.UserCarsActivity"
             android:exported="false" />
         <activity
-            android:name="com.test.sharecar.presentation.activities.car.EnterCarActivity"
+            android:name=".presentation.activities.car.EnterCarActivity"
             android:exported="false" />
         <activity
-            android:name="com.test.sharecar.presentation.activities.car.CarConfirmationActivity"
+            android:name=".presentation.activities.car.CarConfirmationActivity"
             android:exported="false" />
         <activity
-            android:name="com.test.sharecar.presentation.activities.BrowserActivity"
+            android:name=".presentation.activities.BrowserActivity"
             android:exported="false" />
         <activity
-            android:name="com.test.sharecar.presentation.activities.MainActivity"
+            android:name=".presentation.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,8 +44,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBO-EI9W7TvYBT4n83LbyKf1YKyJrd1Abk"/>
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBO-EI9W7TvYBT4n83LbyKf1YKyJrd1Abk" />
     </application>
 
 </manifest>
