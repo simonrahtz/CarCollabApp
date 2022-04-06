@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareCar">
         <activity
-            android:name=".presentation.activities.ActivityLogIn"
+            android:name=".presentation.activities.LogInActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.activities.user.ConfirmUserDetailsActivity"

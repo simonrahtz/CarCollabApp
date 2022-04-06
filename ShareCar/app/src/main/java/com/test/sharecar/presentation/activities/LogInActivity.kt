@@ -9,7 +9,7 @@ import com.test.sharecar.databinding.ActivityLogInBinding
 import com.test.sharecar.databinding.ActivityMainBinding
 import com.test.sharecar.presentation.activities.user.SignUpActivity
 
-class ActivityLogIn : AppCompatActivity() {
+class LogInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLogInBinding
 
