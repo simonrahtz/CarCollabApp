@@ -9,6 +9,11 @@ import com.test.sharecar.databinding.ActivityLogInBinding
 import com.test.sharecar.databinding.ActivityMainBinding
 import com.test.sharecar.presentation.activities.user.SignUpActivity
 
+/**
+ * Simple log in screen. No user authentication is being done at this point.
+ * It is purely for demonstration.
+ */
+
 class LogInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLogInBinding
