@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.R
+import com.test.sharecar.presentation.activities.LogInActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,12 +22,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //startActivity(Intent(this,LogInActivity::class.java))
+        //startActivity(Intent(this, LogInActivity::class.java))
 
+        //Add your compose screen to the NavGraph and launch it here
         setContent {
             navController = rememberNavController()
             SetupNavGraph(navController = navController)
         }
+
 
 
 

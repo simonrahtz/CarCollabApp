@@ -17,7 +17,7 @@ fun SetupNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.FuelPrice.route
+        startDestination = Screen.EnterDestination.route
     ){
         composable(
             route = Screen.FuelPrice.route

@@ -3,10 +3,7 @@ package com.test.sharecar.presentation
 import android.content.Context
 import android.location.Geocoder
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,7 +20,7 @@ import com.test.sharecar.models.Trip
 fun EnterDestination(navController: NavController){
     val context = LocalContext.current
     var location = ""
-
+Surface() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -81,6 +78,8 @@ fun EnterDestination(navController: NavController){
     }
 
 }
+}
+
 
 fun geoCoder(address: String, context: Context): LatLng {
     var geocoder = Geocoder(context).getFromLocationName(address
