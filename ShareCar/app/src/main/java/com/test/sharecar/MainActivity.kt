@@ -24,24 +24,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //startActivity(Intent(this, LogInActivity::class.java))
+        startActivity(Intent(this, LogInActivity::class.java))
 
-        //Add your compose screen to the NavGraph and launch it here
+        /**
         setContent {
             MaterialTheme {
-                FuelPriceScreen()
+                //launch composable functions here
             }
-
-            navController = rememberNavController()
-            SetupNavGraph(navController = navController)
         }
-
-
-
+        */
 
 
     }
 }
+
 
 
 
