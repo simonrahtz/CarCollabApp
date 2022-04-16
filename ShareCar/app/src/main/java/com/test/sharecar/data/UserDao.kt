@@ -1,19 +1,17 @@
 package com.test.sharecar.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 
 @Dao
 interface UserDao {
 
-    @Query("SELECT * FROM person_table")
-    fun getAll(): LiveData<List<User>>
-
-    @Insert (onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addUser(user: User)
 
-    @Query ("DELETE FROM person_table ")
-    suspend fun deleteAll()
-
-
+    @Query("SELECT * FROM user_table")
+    fun readAllData(): LiveData<List<User>>
 }

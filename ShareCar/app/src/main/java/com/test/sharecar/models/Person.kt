@@ -15,7 +15,6 @@ class Person(
     private val cars = mutableListOf<Car>()
     lateinit var userName: String
 
-
     fun addCar(car: Car): Person
     {
         cars.add(car)
@@ -25,11 +24,6 @@ class Person(
     fun getCars(): MutableList<Car> {
         return cars
     }
-
-
-
-
-
 
 }
 

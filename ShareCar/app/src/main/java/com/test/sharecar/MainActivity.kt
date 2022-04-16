@@ -18,22 +18,12 @@ import com.test.sharecar.presentation.activities.LogInActivity
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var navController: NavHostController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         startActivity(Intent(this, LogInActivity::class.java))
-
-        /**
-        setContent {
-            MaterialTheme {
-                //launch composable functions here
-            }
-        }
-        */
-
 
     }
 }
