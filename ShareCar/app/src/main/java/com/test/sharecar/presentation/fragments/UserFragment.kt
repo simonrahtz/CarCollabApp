@@ -1,4 +1,4 @@
-package com.test.sharecar.fragments
+package com.test.sharecar.presentation.fragments
 
 import android.content.Intent
 import android.os.Bundle

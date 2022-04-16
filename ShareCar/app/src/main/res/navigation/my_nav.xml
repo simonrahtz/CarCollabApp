@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/browseFragment"
-        android:name="com.test.sharecar.fragments.BrowseFragment"
+        android:name="com.test.sharecar.presentation.fragments.BrowseFragment"
         android:label="fragment_browse"
         tools:layout="@layout/fragment_browse" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.test.sharecar.fragments.UserFragment"
+        android:name="com.test.sharecar.presentation.fragments.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/carsFragment"
-        android:name="com.test.sharecar.fragments.CarsFragment"
+        android:name="com.test.sharecar.presentation.fragments.CarsFragment"
         android:label="fragment_cars"
         tools:layout="@layout/fragment_cars" >
         <action
