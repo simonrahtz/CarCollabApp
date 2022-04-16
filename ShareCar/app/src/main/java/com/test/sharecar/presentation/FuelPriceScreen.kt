@@ -17,5 +17,5 @@ fun FuelPriceScreen() {
 @Preview
 @Composable
 fun checkFuelPricePreview() {
-    FuelPriceScreen()
+   FuelPriceScreen()
 }

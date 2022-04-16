@@ -7,11 +7,13 @@ import androidx.room.*
 interface UserDao {
 
     @Query("SELECT * FROM person_table")
-    fun getAll(): List<User>
+    fun getAll(): LiveData<List<User>>
 
     @Insert (onConflict = OnConflictStrategy.IGNORE)
-    fun insertAll(vararg users: User)
+    suspend fun addUser(user: User)
 
-    @Query ("DELETE FROM person_table")
+    @Query ("DELETE FROM person_table ")
     suspend fun deleteAll()
+
+
 }

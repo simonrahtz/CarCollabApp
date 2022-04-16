@@ -5,12 +5,14 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.R
+import com.test.sharecar.presentation.FuelPriceScreen
 import com.test.sharecar.presentation.activities.LogInActivity
 
 
@@ -26,6 +28,10 @@ class MainActivity : AppCompatActivity() {
 
         //Add your compose screen to the NavGraph and launch it here
         setContent {
+            MaterialTheme {
+                FuelPriceScreen()
+            }
+
             navController = rememberNavController()
             SetupNavGraph(navController = navController)
         }
