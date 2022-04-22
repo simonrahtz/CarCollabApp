@@ -12,14 +12,12 @@ import kotlinx.coroutines.launch
 
 class SignUpViewModel (application: Application): AndroidViewModel(application) {
 
-    private var id = 0
-    val readAllData: LiveData<List<User>>
+
     private val repository: UserRepository
 
     init {
         val userDao = ShareCarDatabase.getDatabase(application).userDao()
         repository = UserRepository(userDao)
-        readAllData = repository.readAllData
 
     }
 
