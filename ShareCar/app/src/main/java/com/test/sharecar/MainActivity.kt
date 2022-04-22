@@ -1,5 +1,6 @@
 package com.test.sharecar
 
+import android.content.ContentProvider
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent

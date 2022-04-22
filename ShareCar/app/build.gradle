@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.android'
 }
 
 
@@ -93,8 +94,7 @@ dependencies {
         annotationProcessor("androidx.room:room-compiler:$roomVersion")
         // To use Kotlin annotation processing tool (kapt)
         kapt("androidx.room:room-compiler:$roomVersion")
-        // optional - Kotlin Extensions and Coroutines support for Room
-        implementation("androidx.room:room-ktx:$roomVersion")
+
         // optional - RxJava2 support for Room
         implementation("androidx.room:room-rxjava2:$roomVersion")
         // optional - RxJava3 support for Room
@@ -105,5 +105,15 @@ dependencies {
         testImplementation("androidx.room:room-testing:$roomVersion")
         // optional - Paging 3 Integration
         implementation("androidx.room:room-paging:2.5.0-alpha01")
+        // Live Data
+        implementation ("androidx.compose.runtime:runtime-livedata:1.0.5")
+
+    // Coroutines
+        implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
+        implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+        // optional - Kotlin Extensions and Coroutines support for Room
+        implementation("androidx.room:room-ktx:$roomVersion")
+
+
 
 }

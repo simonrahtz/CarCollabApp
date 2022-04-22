@@ -3,25 +3,22 @@ package com.test.sharecar.presentation.activities.user
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.test.sharecar.DataCache
 import com.test.sharecar.data.User
-import com.test.sharecar.data.UserDatabase
-import com.test.sharecar.data.UserRepo
-import com.test.sharecar.models.Person
+import com.test.sharecar.data.ShareCarDatabase
+import com.test.sharecar.data.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SignUpViewModel (application: Application): AndroidViewModel(application) {
 
     private var id = 0
-    private val readAllData: LiveData<List<User>>
-    private val repository: UserRepo
+    val readAllData: LiveData<List<User>>
+    private val repository: UserRepository
 
     init {
-        val userDao = UserDatabase.getDatabase(application).userDao()
-        repository = UserRepo(userDao)
+        val userDao = ShareCarDatabase.getDatabase(application).userDao()
+        repository = UserRepository(userDao)
         readAllData = repository.readAllData
 
     }
