@@ -31,6 +31,7 @@ class ConfirmUserDetailsActivity : AppCompatActivity() {
 
         binding.confirmDetails.setOnClickListener {
         startActivity(Intent(this, BrowserActivity::class.java))
+         startActivity(Intent(this, BroserComposeActivity::class.java))
         }
 
 
