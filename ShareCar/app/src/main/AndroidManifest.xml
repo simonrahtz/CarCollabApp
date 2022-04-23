@@ -9,6 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareCar">
+         <activity
+            android:name=".presentation.compose.BroserComposeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_broser_compose"
+            android:theme="@style/Theme.ShareCar.NoActionBar" />
+        <!-- <activity -->
+        <!-- android:name=".presentation.activities.LogInActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".presentation.activities.LogInActivity"
             android:exported="false" />
