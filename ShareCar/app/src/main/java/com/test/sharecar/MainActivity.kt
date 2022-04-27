@@ -14,7 +14,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.R
 import com.test.sharecar.presentation.FuelPriceScreen
-import com.test.sharecar.presentation.UserDetailsScreen
 import com.test.sharecar.presentation.activities.LogInActivity
 
 
@@ -25,10 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //startActivity(Intent(this, LogInActivity::class.java))
-        setContent { MaterialTheme{
-            UserDetailsScreen()
-        } }
+        startActivity(Intent(this, LogInActivity::class.java))
+
 
     }
 }
