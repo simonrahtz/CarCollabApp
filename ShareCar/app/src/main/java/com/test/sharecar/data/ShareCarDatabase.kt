@@ -23,7 +23,7 @@ abstract class ShareCarDatabase: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                 context.applicationContext,
                 ShareCarDatabase::class.java,
-                "user_database"
+                "ShareCarDatabase"
                 ).build()
                 INSTANCE = instance
                 return instance
