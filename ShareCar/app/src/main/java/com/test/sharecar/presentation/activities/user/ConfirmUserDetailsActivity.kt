@@ -4,8 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.test.sharecar.DataCache
-import com.test.sharecar.presentation.activities.BrowserActivity
 import com.test.sharecar.databinding.ActivityConfirmUserDetailsBinding
+import com.test.sharecar.presentation.activities.BrowserActivity
+import com.test.sharecar.presentation.compose.BrowserComposeActivity
 
 /**
  * Class that handles displaying details back to the user for confirmation
@@ -31,6 +32,7 @@ class ConfirmUserDetailsActivity : AppCompatActivity() {
 
         binding.confirmDetails.setOnClickListener {
         startActivity(Intent(this, BrowserActivity::class.java))
+         startActivity(Intent(this, BrowserComposeActivity::class.java))
         }
 
 
