@@ -1,7 +1,6 @@
-package com.test.sharecar.presentation.fragments
+package com.test.sharecar.presentation.compose
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable

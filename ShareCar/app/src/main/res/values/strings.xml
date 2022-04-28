@@ -17,6 +17,7 @@
     <string name="car1">Mazda 626 1998</string>
     <string name="car2">Jeep Wrangler 2005</string>
     <string name="car3">Honda Integra 2000</string>
-
+    <string name="title_activity_broser_compose">BroserComposeActivity</string>
+    <string name="title_activity_browser_compose">BrowserComposeActivity</string>
 
 </resources>

@@ -1,6 +1,5 @@
-package com.test.sharecar.presentation.fragments
+package com.test.sharecar.presentation.compose
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
