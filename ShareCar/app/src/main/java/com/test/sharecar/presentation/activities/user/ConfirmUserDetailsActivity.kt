@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.test.sharecar.data.DataCache
 import com.test.sharecar.databinding.ActivityConfirmUserDetailsBinding
 import com.test.sharecar.presentation.activities.BrowserActivity
-import com.test.sharecar.presentation.compose.BrowserComposeActivity
+import com.test.sharecar.presentation.bottomnavigation.BrowserComposeActivity
 
 /**
  * Class that handles displaying details back to the user for confirmation

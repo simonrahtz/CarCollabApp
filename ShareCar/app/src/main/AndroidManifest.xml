@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareCar">
         <activity
-            android:name=".presentation.compose.BrowserComposeActivity"
+            android:name=".presentation.bottomnavigation.BrowserComposeActivity"
             android:exported="false"
             android:label="@string/title_activity_browser_compose"
             android:theme="@style/Theme.ShareCar.NoActionBar" />

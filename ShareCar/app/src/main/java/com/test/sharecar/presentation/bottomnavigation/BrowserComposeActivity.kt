@@ -1,4 +1,4 @@
-package com.test.sharecar.presentation.compose
+package com.test.sharecar.presentation.bottomnavigation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.test.sharecar.presentation.compose.ui.theme.ShareCarTheme
+import com.test.sharecar.presentation.bottomnavigation.ui.theme.ShareCarTheme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
