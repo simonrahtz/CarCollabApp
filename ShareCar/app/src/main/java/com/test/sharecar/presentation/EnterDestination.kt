@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.maps.model.LatLng
-import com.test.sharecar.DataCache
+import com.test.sharecar.data.DataCache
 import com.test.sharecar.models.Trip
 
 @Composable

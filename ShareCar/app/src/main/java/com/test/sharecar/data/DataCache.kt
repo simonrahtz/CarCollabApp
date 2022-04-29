@@ -1,4 +1,4 @@
-package com.test.sharecar
+package com.test.sharecar.data
 
 import com.test.sharecar.models.Car
 import com.test.sharecar.models.Person
