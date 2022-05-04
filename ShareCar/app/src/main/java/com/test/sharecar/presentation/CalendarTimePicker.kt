@@ -1,4 +1,4 @@
-package com.test.sharecar.presentation.activities
+package com.test.sharecar.presentation
 
 
 import android.app.DatePickerDialog
