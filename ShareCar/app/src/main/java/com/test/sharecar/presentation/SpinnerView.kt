@@ -164,6 +164,11 @@ fun SpinnerView() {
     }
 }
 
+@Preview
+@Composable
+fun SpinnerViewPreview() {
+    SpinnerView()
+}
 
 
 
