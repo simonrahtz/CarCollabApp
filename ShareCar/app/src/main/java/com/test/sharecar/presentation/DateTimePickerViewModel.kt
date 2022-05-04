@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.*
 
-class SpinnerViewModel: ViewModel() {
+class DateTimePickerViewModel: ViewModel() {
     private val _time = MutableLiveData("")
     var time: LiveData<String> = _time
 
