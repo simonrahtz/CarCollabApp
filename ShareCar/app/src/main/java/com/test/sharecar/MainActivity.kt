@@ -13,6 +13,7 @@ import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -39,6 +40,7 @@ import com.test.sharecar.R
 import com.test.sharecar.presentation.FuelPriceScreen
 import com.test.sharecar.presentation.activities.LogInActivity
 import com.test.sharecar.presentation.activities.SpinnerViewModel
+import com.test.sharecar.presentation.bottomnavigation.ui.theme.Purple500
 
 
 class MainActivity() : AppCompatActivity(), Parcelable {
