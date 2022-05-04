@@ -30,8 +30,7 @@ import com.test.sharecar.presentation.bottomnavigation.ui.theme.Purple500
 @SuppressLint("UnusedTransitionTargetStateParameter")
 @Composable
 fun SpinnerView() {
-    val sampleList = mutableListOf("Sample 1", "Sample 2", "Sample 3", "Sample 4", "Sample 5")
-    var sampleName: String by remember { mutableStateOf(sampleList[0]) }
+
     var expanded by remember { mutableStateOf(false) }
     val transitionState = remember {
         MutableTransitionState(expanded).apply {
@@ -53,79 +52,6 @@ fun SpinnerView() {
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Purple500)
-                .padding(15.dp)
-        ) {
-            Text(
-                text = "Spinner & DateTime",
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                color = Color.White
-            )
-        }
-        Spacer(modifier = Modifier.height(10.dp))
-        Column {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(0.5f),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = "Spinner",
-                    fontSize = 20.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold
-                )
-
-                Spacer(modifier = Modifier.height(10.dp))
-
-                Row(
-                    modifier = Modifier
-                        .clickable {
-                            expanded = !expanded
-                        }
-                        .padding(8.dp),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = sampleName,
-                        fontSize = 18.sp,
-                        modifier = Modifier
-                            .padding(end = 8.dp)
-                            .height(30.dp)
-                    )
-                    Icon(
-                        imageVector = Icons.Filled.ArrowDropDown,
-                        contentDescription = "Spinner",
-                        modifier = Modifier.rotate(arrowRotationDegree)
-                    )
-
-                    DropdownMenu(
-                        expanded = expanded,
-                        onDismissRequest = {
-                            expanded = false
-                        }
-                    ) {
-                        sampleList.forEach { data ->
-                            DropdownMenuItem(
-                                onClick = {
-                                    expanded = false
-                                    sampleName = data
-                                }
-                            ) {
-                                Text(text = data)
-                            }
-                        }
-                    }
-                }
-            }
 
             Column(
                 modifier = Modifier
@@ -162,9 +88,9 @@ fun SpinnerView() {
             }
         }
     }
-}
 
-@Preview
+
+@Preview(showBackground = true)
 @Composable
 fun SpinnerViewPreview() {
     SpinnerView()
