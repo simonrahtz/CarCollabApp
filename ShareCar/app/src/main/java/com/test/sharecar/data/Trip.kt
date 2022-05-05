@@ -10,7 +10,7 @@ import java.util.*
 data class Trip (
     @PrimaryKey(autoGenerate = true) val tripId: Int,
     @ColumnInfo(name = "date") val date: String?,
-    @ColumnInfo(name = "time") val time: String?,
-    @ColumnInfo(name = "destination") val destination: String?,
+    //@ColumnInfo(name = "time") val time: String?,
+    //@ColumnInfo(name = "destination") val destination: String?,
 
     )

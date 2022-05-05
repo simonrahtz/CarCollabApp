@@ -69,7 +69,7 @@ fun SpinnerView() {
 
                 TextButton(
                     onClick = {
-                              viewModel.insertTrip(Trip(0,dateTime.value,"none","none"))
+                              viewModel.insertTrip(Trip(0,dateTime.value))
                     },
                     modifier = Modifier
                         .clip(RoundedCornerShape(10.dp))
