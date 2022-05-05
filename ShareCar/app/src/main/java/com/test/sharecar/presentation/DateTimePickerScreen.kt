@@ -17,6 +17,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.test.sharecar.components.BoldText
+import com.test.sharecar.components.CustomTextField
+import com.test.sharecar.components.DefaultButton
 import com.test.sharecar.data.Trip
 import com.test.sharecar.presentation.bottomnavigation.ui.theme.Purple500
 
@@ -27,62 +30,49 @@ fun SpinnerView() {
     val context = LocalContext.current
     val viewModel: DateTimePickerViewModel = viewModel()
     val dateTime = viewModel.time.observeAsState()
+    var address by remember { mutableStateOf("")}
+    val onAddressTextChange = {text : String -> address = text}
 
     Column(
         modifier = Modifier
             .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(0.5f),
+                    .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-
             ) {
-                Text(
-                    text = "Calender Date & Time Picker",
-                    fontSize = 20.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold
-                )
 
-                Spacer(modifier = Modifier.height(20.dp))
-
-                TextButton(
-                    onClick = {
-                        viewModel.selectDateTime(context)
-                    },
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(Purple500)
-                        .padding(5.dp)
-                ) {
-                    Text(text = "Select Date", color = Color.White)
-                }
-
-                Spacer(modifier = Modifier.height(10.dp))
-
-                Text(text = dateTime.value ?: "No Time Set")
-
-                TextButton(
-                    onClick = {
-                              viewModel.insertTrip(Trip(0, dateTime.value.toString()))
-                    },
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(Purple500)
-                        .padding(5.dp)
-                ) {
-                    Text(text = "Confirm", color = Color.White)
-                }
-
-
+                CustomTextField(title = "Enter Destination",
+                    textState = address,
+                   onTextChange = onAddressTextChange )
+                Spacer(modifier = Modifier
+                    .height(20.dp))
+                DefaultButton(text = "Select Date",
+                    onClick = { viewModel.selectDateTime(context) })
+                Spacer(modifier = Modifier
+                    .height(10.dp))
+                BoldText(text = "Date: " + dateTime.value)
             }
+        Spacer(modifier = Modifier
+            .height(50.dp))
+        Button(
+            onClick = {
+                viewModel.insertTrip(Trip(0,
+                    dateTime.value.toString(),
+                    address))
+            }
+
+        ) {
+            Text(text = "Confirm", color = Color.White)
         }
-    }
+
+                }
+
+        }
+    
 
 
 @Preview(showBackground = true)
