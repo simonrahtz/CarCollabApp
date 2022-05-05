@@ -9,6 +9,8 @@ class UserRepository(private val userDao: UserDao,private val tripDao: TripDao) 
 
     val readAllUsers: LiveData<List<User>> = userDao.readAllData()
     val readAllTrips: LiveData<List<Trip>> = tripDao.readAllData()
+    val latestTrip : LiveData<Trip> = tripDao.getLatestEntry()
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     suspend fun addUser (user: User){
         userDao.addUser(user)
@@ -17,6 +19,8 @@ class UserRepository(private val userDao: UserDao,private val tripDao: TripDao) 
     suspend fun addTrip (trip: Trip){
         tripDao.addTrip(trip)
     }
+
+
 
 
 

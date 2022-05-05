@@ -28,7 +28,7 @@ class DateTimePickerViewModel(application: Application): AndroidViewModel(applic
     var time: LiveData<String> = _time
 
     fun selectDateTime(context: Context) {
-        var time = ""
+        var time: String = ""
         val currentDateTime = Calendar.getInstance()
         val startYear = currentDateTime.get(Calendar.YEAR)
         val startMonth = currentDateTime.get(Calendar.MONTH)

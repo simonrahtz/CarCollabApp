@@ -1,23 +1,37 @@
 package com.test.sharecar.presentation
 
+import android.app.Application
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
 fun ConfirmTripDetails() {
+
+    val viewModel = ConfirmTripDetailsViewModel(LocalContext.current.applicationContext as Application)
+    val latestTripEntry by viewModel.latestTrip.observeAsState()
+
     Column(modifier = Modifier
         .fillMaxSize()
-        .padding(10.dp)) {
+        .padding(10.dp),
+    verticalArrangement = Arrangement.Center) {
+        latestTripEntry?.let {
+            InfoItem(title = "Date", info = it.date!!)
+        }
 
-        InfoItem(title = "Date", info = "05.04.22")
-    }
+        }
+
 }
 
 @Composable
@@ -37,17 +51,14 @@ fun InfoItem(title: String, info: String) {
             Text(
                 text = info,
                 color = Color.DarkGray,
-                fontSize = 16.sp,
+                fontSize = 20.sp,
                 modifier = Modifier.weight(0.8f),
                 maxLines = 1
             )
             Spacer(modifier = Modifier.width(120.dp))
-            Text(
-                text = "Edit", color = Color(185, 155, 248),
-                modifier = Modifier.weight(0.2f)
-            )
+
         }
-        Spacer(modifier = Modifier.height(12.dp))
+
         Spacer(
             modifier = Modifier
                 .height(1.dp)
