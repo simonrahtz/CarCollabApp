@@ -26,6 +26,9 @@ fun ConfirmTripDetails() {
     verticalArrangement = Arrangement.Center) {
         latestTripEntry?.let {
             InfoItem(title = "Date", info = it.date!!)
+            Spacer(modifier = Modifier
+                .height(20.dp))
+            InfoItem(title = "Destination", info = it.destination!!)
         }
 
         }
