@@ -16,9 +16,10 @@ class SignUpViewModel (application: Application): AndroidViewModel(application) 
     private val repository: UserRepository
 
     init {
-        val userDao = ShareCarDatabase.getDatabase(application).userDao()
-        repository = UserRepository(userDao)
-
+        val db = ShareCarDatabase.getDatabase(application)
+        val userDao = db.userDao()
+        val tripDao = db.tripDao()
+        repository = UserRepository(userDao,tripDao)
     }
 
 
