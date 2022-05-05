@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.test.sharecar.presentation.bottomnavigation.ui.theme.Purple500
 
-@SuppressLint("UnusedTransitionTargetStateParameter")
+
 @Composable
 fun SpinnerView() {
 
