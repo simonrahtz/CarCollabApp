@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.test.sharecar.data.Trip
 import com.test.sharecar.presentation.bottomnavigation.ui.theme.Purple500
 
 
@@ -65,6 +66,18 @@ fun SpinnerView() {
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Text(text = dateTime.value ?: "No Time Set")
+
+                TextButton(
+                    onClick = {
+                              viewModel.insertTrip(Trip(0,dateTime.value,"none","none"))
+                    },
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(Purple500)
+                        .padding(5.dp)
+                ) {
+                    Text(text = "Confirm", color = Color.White)
+                }
 
 
             }

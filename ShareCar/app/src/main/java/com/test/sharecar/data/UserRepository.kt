@@ -5,12 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.*
 
-class UserRepository(private val userDao: UserDao) {
+class UserRepository(private val userDao: UserDao,private val tripDao: TripDao) {
 
-    val readAllData: LiveData<List<User>> = userDao.readAllData()
+    val readAllUsers: LiveData<List<User>> = userDao.readAllData()
+    val readAllTrips: LiveData<List<Trip>> = tripDao.readAllData()
 
     suspend fun addUser (user: User){
         userDao.addUser(user)
+    }
+
+    suspend fun addTrip (trip: Trip){
+        tripDao.addTrip(trip)
     }
 
 

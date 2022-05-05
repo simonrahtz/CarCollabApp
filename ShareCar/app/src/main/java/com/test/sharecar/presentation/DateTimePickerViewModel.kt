@@ -1,15 +1,29 @@
 package com.test.sharecar.presentation
 
 
+import android.app.Application
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.test.sharecar.data.ShareCarDatabase
+import com.test.sharecar.data.Trip
+import com.test.sharecar.data.UserRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
-class DateTimePickerViewModel: ViewModel() {
+class DateTimePickerViewModel(application: Application): AndroidViewModel(application) {
+
+    private val repository: UserRepository
+
+    init {
+        val db = ShareCarDatabase.getDatabase(application)
+        val userDao = db.userDao()
+        val tripDao = db.tripDao()
+        repository = UserRepository(userDao,tripDao)
+    }
+
     private val _time = MutableLiveData("")
     var time: LiveData<String> = _time
 
@@ -40,6 +54,12 @@ class DateTimePickerViewModel: ViewModel() {
 
     private fun updateDateTime(dateTime: String) {
         _time.value = dateTime
+    }
+
+    fun insertTrip(trip: Trip){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.addTrip(trip)
+        }
     }
 }
 
