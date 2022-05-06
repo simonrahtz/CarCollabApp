@@ -3,16 +3,18 @@ package com.test.sharecar
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.Navigation
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.test.sharecar.presentation.ConfirmTripDetails
 import com.test.sharecar.presentation.EnterDestination
 import com.test.sharecar.presentation.FuelPriceScreen
 import com.test.sharecar.presentation.MapScreen
 
 
 @Composable
-fun SetupNavGraph(
+fun Navigation(
     navController: NavHostController
 ) {
     NavHost(
@@ -33,6 +35,11 @@ fun SetupNavGraph(
             route = Screen.EnterDestination.route
         ) {
             EnterDestination(navController = navController)
+        }
+        composable(
+            route = Screen.ConfirmTrip.route
+        ) {
+            ConfirmTripDetails()
         }
 
     }

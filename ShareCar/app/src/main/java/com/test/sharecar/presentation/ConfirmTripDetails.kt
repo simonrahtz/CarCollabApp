@@ -3,7 +3,7 @@ package com.test.sharecar.presentation
 import android.app.Application
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -34,6 +34,7 @@ fun ConfirmTripDetails() {
         }
 
 }
+
 
 @Composable
 fun InfoItem(title: String, info: String) {

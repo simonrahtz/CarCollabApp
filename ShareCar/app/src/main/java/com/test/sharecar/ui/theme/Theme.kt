@@ -1,4 +1,4 @@
-package com.test.sharecar.presentation.bottomnavigation.ui.theme
+package com.test.sharecar.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

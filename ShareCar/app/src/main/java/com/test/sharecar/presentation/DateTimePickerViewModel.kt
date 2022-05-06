@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
-class DateTimePickerViewModel(application: Application): AndroidViewModel(application) {
+class DateTimePickerViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: UserRepository
 
@@ -21,14 +21,14 @@ class DateTimePickerViewModel(application: Application): AndroidViewModel(applic
         val db = ShareCarDatabase.getDatabase(application)
         val userDao = db.userDao()
         val tripDao = db.tripDao()
-        repository = UserRepository(userDao,tripDao)
+        repository = UserRepository(userDao, tripDao)
     }
 
     private val _time = MutableLiveData("")
     var time: LiveData<String> = _time
 
     fun selectDateTime(context: Context) {
-        var time: String = ""
+        var date: String = ""
         val currentDateTime = Calendar.getInstance()
         val startYear = currentDateTime.get(Calendar.YEAR)
         val startMonth = currentDateTime.get(Calendar.MONTH)
@@ -40,14 +40,13 @@ class DateTimePickerViewModel(application: Application): AndroidViewModel(applic
             TimePickerDialog(context, { _, hour, minute ->
                 val pickedDateTime = Calendar.getInstance()
                 pickedDateTime.set(year, month, day, hour, minute)
-                val monthStr: String
-                if ((month + 1).toString().length == 1) {
-                    monthStr = "0${month + 1}"
+                val monthStr: String = if ((month + 1).toString().length == 1) {
+                    "0${month + 1}"
                 } else {
-                    monthStr = month.toString()
+                    month.toString()
                 }
-                time = "$day - $monthStr - $year $hour:$minute"
-                updateDateTime(time)
+                date = "$day/$monthStr/$year"
+                updateDateTime(date)
             }, startHour, startMinute, false).show()
         }, startYear, startMonth, startDay).show()
     }
@@ -56,8 +55,8 @@ class DateTimePickerViewModel(application: Application): AndroidViewModel(applic
         _time.value = dateTime
     }
 
-    fun insertTrip(trip: Trip){
-        viewModelScope.launch(Dispatchers.IO){
+    fun insertTrip(trip: Trip) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.addTrip(trip)
         }
     }
