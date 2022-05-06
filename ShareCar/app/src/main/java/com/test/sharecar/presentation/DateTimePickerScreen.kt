@@ -51,7 +51,7 @@ fun EnterTripDetails(navController: NavController) {
                     onTextChange = onAddressTextChange
                 )
                 Divider(
-                    modifier = Modifier.padding(vertical = 30.dp),
+                    modifier = Modifier.padding(vertical = 50.dp),
                     color = Color.LightGray
                 )
                 Row(
@@ -75,7 +75,7 @@ fun EnterTripDetails(navController: NavController) {
                         .fillMaxWidth()
                         .height(50.dp),
                     onClick = {
-                        viewModel.insertTrip(Trip(0, dateTime.value,address))
+                        viewModel.insertTrip(Trip(0, dateTime.value, address))
                         navController.navigate(Screen.ConfirmTrip.route)
 
                     }
