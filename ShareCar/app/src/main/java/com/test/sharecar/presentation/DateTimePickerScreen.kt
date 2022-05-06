@@ -13,6 +13,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.test.sharecar.Navigation
+import com.test.sharecar.Screen
 import com.test.sharecar.components.BoldText
 import com.test.sharecar.components.CustomTextField
 import com.test.sharecar.components.DefaultButton
@@ -73,15 +75,9 @@ fun EnterTripDetails(navController: NavController) {
                         .fillMaxWidth()
                         .height(50.dp),
                     onClick = {
-                        viewModel.insertTrip(
-                            Trip(
-                                0,
-                                dateTime.value.toString(),
-                                address
+                        viewModel.insertTrip(Trip(0, dateTime.value,address))
+                        navController.navigate(Screen.ConfirmTrip.route)
 
-                            )
-                        )
-                        navController.navigate("confirm_trip")
                     }
                 ) {
                     Text(text = "Confirm", color = Color.White)
@@ -97,7 +93,7 @@ fun EnterTripDetails(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun EnterTripDetailsPreview() {
-    EnterTripDetails(navController = rememberNavController())
+    Navigation()
 }
 
 
