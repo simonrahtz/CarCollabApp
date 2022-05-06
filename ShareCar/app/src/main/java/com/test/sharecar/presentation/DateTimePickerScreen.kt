@@ -45,6 +45,7 @@ fun EnterTripDetails(navController: NavController) {
                     .padding(20.dp),
 
                 ) {
+                Text(text = "Enter Destination")
                 CustomTextField(
                     title = "Type Address",
                     textState = address,
@@ -54,6 +55,7 @@ fun EnterTripDetails(navController: NavController) {
                     modifier = Modifier.padding(vertical = 50.dp),
                     color = Color.LightGray
                 )
+                Text(text = "Book a date")
                 Row(
                     Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
@@ -63,6 +65,10 @@ fun EnterTripDetails(navController: NavController) {
                     Spacer(modifier = Modifier.padding(30.dp))
                     BoldText(text = "Date: " + dateTime.value)
                 }
+                Divider(
+                    modifier = Modifier.padding(vertical = 50.dp),
+                    color = Color.LightGray
+                )
             }
             Column(
                 modifier = Modifier

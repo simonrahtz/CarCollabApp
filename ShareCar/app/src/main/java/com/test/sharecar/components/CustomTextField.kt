@@ -17,9 +17,7 @@ fun CustomTextField(
     title: String,
     textState: String,
     onTextChange: (String) -> Unit
-
-
-    ) {
+) {
     OutlinedTextField(
         value = textState,
         onValueChange = { onTextChange(it) },
