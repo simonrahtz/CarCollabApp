@@ -7,7 +7,7 @@ import com.test.sharecar.data.ShareCarDatabase
 import com.test.sharecar.data.Trip
 import com.test.sharecar.data.UserRepository
 
-class ConfirmTripDetailsViewModel(application: Application) : AndroidViewModel(application) {
+class CreateTripViewModel(application: Application) : AndroidViewModel(application) {
 
     val allTrips: LiveData<List<Trip>>
     val latestTrip: LiveData<Trip>
