@@ -1,17 +1,10 @@
 package com.test.sharecar.presentation.bottomnavigation
 
 import android.app.Application
-import android.location.Address
-import android.location.Geocoder
-import android.location.Location
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,31 +12,26 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.test.sharecar.GeoCoder
 import com.test.sharecar.R
-import com.test.sharecar.presentation.geoCoder
+import com.test.sharecar.data.User
 
 @Composable
 fun UserScreen() {
 
-    val viewModel = UserViewModel(LocalContext.current.applicationContext as Application)
+    val context = LocalContext.current
+    val viewModel = UserViewModel(context.applicationContext as Application)
     val currentUser by viewModel.currentUser.observeAsState()
-    val geocoder = Geocoder(LocalContext.current).getFromLocationName(
-        currentUser?.address,1)
-    val street = geocoder[0].thoroughfare
-    val postCode = geocoder[0].postalCode
-    val suburb = geocoder[0].subLocality
-
-
-
+    //val street = address?.thoroughfare
+    //val streetNum = address?.subThoroughfare
+    //val postCode = address?.postalCode
+    //val suburb = address?.locality
 
 
     Column(
@@ -72,11 +60,14 @@ fun UserScreen() {
                 )
                 Spacer(modifier = Modifier.width(12.dp))
 
+
+                currentUser?.let {
                     Text(
-                        text = street,
+                        text = it.name,
                         color = Color.Black,
                         fontSize = 26.sp
                     )
+                }
 
 
             }
@@ -103,9 +94,15 @@ fun UserScreen() {
             )
             Spacer(modifier = Modifier.width(260.dp))
         }
-        InfoItem(title = "Street", info = "66 Marloo Street")
-        InfoItem(title = "Suburb", info = "Rosslyn Pork")
-        InfoItem(title = "Post Code", info = "2784")
+
+        currentUser?.let {
+            val address = GeoCoder().getAddress(it.address, context)
+            InfoItem(title = "Street", info = address.subThoroughfare + " " + address.thoroughfare)
+            InfoItem(title = "Suburb", info = address.locality)
+            InfoItem(
+                title = "Post Code", info = address.postalCode
+            )
+        }
         Spacer(
             modifier = Modifier
                 .height(6.dp)
@@ -152,7 +149,7 @@ fun InfoItem(title: String, info: String) {
                 color = Color.DarkGray,
                 fontSize = 16.sp,
                 modifier = Modifier.weight(0.8f),
-                maxLines = 1
+                maxLines = 2
             )
             Spacer(modifier = Modifier.width(120.dp))
             Text(
