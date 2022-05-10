@@ -10,9 +10,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.test.sharecar.presentation.bottomnavigation.ui.theme.ShareCarTheme
+import com.test.sharecar.ui.theme.ShareCarTheme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
@@ -34,7 +35,7 @@ fun MainScreen() {
     Scaffold(
         bottomBar = { BottomNavigationBar(navController) }
     ) {
-        Navigation(navController)
+        BottomNavigation(navController)
     }
 }
 
@@ -42,13 +43,13 @@ fun MainScreen() {
 fun BottomNavigationBar(navController: NavController) {
 
     val items = listOf(
-        BottomBarScreen.Browser,
+        BottomBarScreen.Trip,
         BottomBarScreen.Cars,
         BottomBarScreen.User,
     )
 
     BottomNavigation(
-        backgroundColor = Color.Cyan,
+        backgroundColor = Color.LightGray,
         contentColor = Color.Black
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -79,19 +80,26 @@ fun BottomNavigationBar(navController: NavController) {
 }
 
 @Composable
-fun Navigation(navController: NavHostController) {
+fun BottomNavigation(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = BottomBarScreen.Browser.route
+        startDestination = BottomBarScreen.Trip.route
     ) {
-        composable(BottomBarScreen.Browser.route) {
-            BrowserScreen()
+        composable(BottomBarScreen.Trip.route) {
+            TripScreen()
         }
         composable(BottomBarScreen.Cars.route) {
-            CarsScreen()
+            CarScreen()
         }
         composable(BottomBarScreen.User.route) {
             UserScreen()
         }
     }
+}
+
+@Preview
+@Composable
+fun Preview() {
+    BottomNavigationBar(navController = rememberNavController())
+
 }

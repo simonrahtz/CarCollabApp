@@ -1,0 +1,109 @@
+package com.test.sharecar.presentation
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import com.test.sharecar.Navigation
+import com.test.sharecar.Screen
+import com.test.sharecar.components.BoldText
+import com.test.sharecar.components.CustomTextField
+import com.test.sharecar.components.DefaultButton
+import com.test.sharecar.components.TitleText
+import com.test.sharecar.data.Trip
+
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun CreateTrip(navController: NavController) {
+
+    val context = LocalContext.current
+    val viewModel: CreateTripViewModel = viewModel()
+    val dateTime = viewModel.time.observeAsState()
+    var address by remember { mutableStateOf("") }
+    val onAddressTextChange = { text: String -> address = text }
+
+
+    BackdropScaffold(
+        appBar = { },
+        backLayerContent = {
+            TitleText(text = "Enter Trip Details", padding = 20,Color.White)
+        },
+        frontLayerContent = {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
+
+                ) {
+                Text(text = "Enter Destination")
+                CustomTextField(
+                    title = "Type Address",
+                    textState = address,
+                    onTextChange = onAddressTextChange
+                )
+                Divider(
+                    modifier = Modifier.padding(vertical = 50.dp),
+                    color = Color.LightGray
+                )
+                Text(text = "Book a date")
+                Row(
+                    Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    DefaultButton(text = "Select Date",
+                        onClick = { viewModel.selectDateTime(context) })
+                    Spacer(modifier = Modifier.padding(30.dp))
+                    BoldText(text = "Date: " + dateTime.value)
+                }
+                Divider(
+                    modifier = Modifier.padding(vertical = 50.dp),
+                    color = Color.LightGray
+                )
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
+                verticalArrangement = Arrangement.Bottom
+            ) {
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),
+                    onClick = {
+                        viewModel.insertTrip(Trip(0, dateTime.value, address))
+                        navController.navigate(Screen.ConfirmTrip.route)
+
+                    }
+                ) {
+                    Text(text = "Confirm", color = Color.White)
+                }
+                Spacer(modifier = Modifier.padding(bottom = 50.dp))
+
+            }
+        },
+        peekHeight = 100.dp
+    ) { }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun EnterTripDetailsPreview() {
+    Navigation()
+}
+
+
+
+
+
+
