@@ -6,6 +6,9 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Cancel
+import androidx.compose.material.icons.sharp.Cancel
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -16,10 +19,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.components.TitleText
 
 @Composable
-fun ConfirmTripDetails() {
+fun ConfirmTripDetails(navController: NavHostController) {
 
     val viewModel =
         ConfirmTripViewModel(LocalContext.current.applicationContext as Application)
@@ -28,11 +33,23 @@ fun ConfirmTripDetails() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(10.dp)
+            .background(MaterialTheme.colors.primary)
 
     ) {
-        Row(Modifier.padding(10.dp)) {
-            TitleText(text = "View Your Trip", padding = 0)
+        Row(
+            modifier = Modifier
+                .padding(10.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            TitleText(text = "View Your Trip", padding = 0, Color.White)
+            IconButton(onClick = { navController.popBackStack() }) {
+                Icon(
+                    Icons.Sharp.Cancel,
+                    contentDescription = "cancel",
+                    tint = Color.White
+                )
+            }
 
         }
         Spacer(modifier = Modifier.padding(5.dp))
@@ -41,8 +58,9 @@ fun ConfirmTripDetails() {
                 .clip(shape = RoundedCornerShape(5.dp))
                 .background(Color.White)
                 .border(1.dp, Color.LightGray, RoundedCornerShape(5.dp))
+                .padding(20.dp)
                 .fillMaxSize()
-                .padding(10.dp)
+
 
         ) {
 
@@ -100,5 +118,5 @@ fun InfoItem(title: String, info: String) {
 @Preview(showBackground = true)
 @Composable
 fun ConfirmTripDetailsPreview() {
-    ConfirmTripDetails()
+    ConfirmTripDetails(navController = rememberNavController())
 }

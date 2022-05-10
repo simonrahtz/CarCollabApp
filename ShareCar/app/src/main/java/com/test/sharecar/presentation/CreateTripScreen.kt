@@ -35,7 +35,7 @@ fun CreateTrip(navController: NavController) {
     BackdropScaffold(
         appBar = { },
         backLayerContent = {
-            TitleText(text = "Enter Trip Details", padding = 20)
+            TitleText(text = "Enter Trip Details", padding = 20,Color.White)
         },
         frontLayerContent = {
             Column(

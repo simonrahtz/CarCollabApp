@@ -16,7 +16,7 @@ fun Navigation() {
         composable(
             route = Screen.ConfirmTrip.route
         ) {
-            ConfirmTripDetails()
+            ConfirmTripDetails(navController = navController)
         }
 
     }
