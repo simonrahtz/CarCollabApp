@@ -20,6 +20,7 @@ fun Navigation() {
         ) {
             ConfirmTripDetails()
         }
+
     }
 
 }

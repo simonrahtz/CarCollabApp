@@ -42,7 +42,7 @@ fun MainScreen() {
 fun BottomNavigationBar(navController: NavController) {
 
     val items = listOf(
-        BottomBarScreen.Browser,
+        BottomBarScreen.Trip,
         BottomBarScreen.Cars,
         BottomBarScreen.User,
     )
@@ -82,13 +82,13 @@ fun BottomNavigationBar(navController: NavController) {
 fun Navigation(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = BottomBarScreen.Browser.route
+        startDestination = BottomBarScreen.Trip.route
     ) {
-        composable(BottomBarScreen.Browser.route) {
-            BrowserScreen()
+        composable(BottomBarScreen.Trip.route) {
+            TripScreen()
         }
         composable(BottomBarScreen.Cars.route) {
-            CarsScreen()
+            CarScreen()
         }
         composable(BottomBarScreen.User.route) {
             UserScreen()

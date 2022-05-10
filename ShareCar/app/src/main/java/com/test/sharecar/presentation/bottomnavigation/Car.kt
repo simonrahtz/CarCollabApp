@@ -11,7 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun CarsScreen() {
+fun CarScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize(),
@@ -28,6 +28,6 @@ fun CarsScreen() {
 
 @Composable
 @Preview
-fun CarsScreenPreview() {
-    CarsScreen()
+fun CarScreenPreview() {
+    CarScreen()
 }
