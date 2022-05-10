@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.ui.theme.ShareCarTheme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
@@ -48,7 +49,7 @@ fun BottomNavigationBar(navController: NavController) {
     )
 
     BottomNavigation(
-        backgroundColor = Color.Cyan,
+        backgroundColor = Color.LightGray,
         contentColor = Color.Black
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -94,4 +95,11 @@ fun BottomNavigation(navController: NavHostController) {
             UserScreen()
         }
     }
+}
+
+@Preview
+@Composable
+fun Preview() {
+    BottomNavigationBar(navController = rememberNavController())
+
 }

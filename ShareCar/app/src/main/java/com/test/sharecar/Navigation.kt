@@ -18,6 +18,9 @@ fun Navigation() {
         ) {
             ConfirmTripDetails(navController = navController)
         }
+        composable(route = Screen.Map.route){
+            MapScreen()
+        }
 
     }
 
