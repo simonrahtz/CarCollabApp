@@ -1,16 +1,16 @@
-package com.test.sharecar.presentation
+package com.test.sharecar.presentation.bottomnavigation
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.test.sharecar.data.ShareCarDatabase
-import com.test.sharecar.data.Trip
 import com.test.sharecar.data.ShareCarRepository
+import com.test.sharecar.data.Trip
+import com.test.sharecar.data.User
 
-class ConfirmTripViewModel(application: Application) : AndroidViewModel(application) {
+class UserViewModel(application: Application) : AndroidViewModel(application) {
 
-    val allTrips: LiveData<List<Trip>>
-    val latestTrip: LiveData<Trip>
+    val currentUser: LiveData<User>
     private val repository: ShareCarRepository
 
 
@@ -20,9 +20,6 @@ class ConfirmTripViewModel(application: Application) : AndroidViewModel(applicat
         val tripDao = db.tripDao()
         repository = ShareCarRepository(userDao,tripDao)
 
-        allTrips = repository.readAllTrips
-        latestTrip = repository.latestTrip
+       currentUser = repository.currentUser
     }
-
-
 }

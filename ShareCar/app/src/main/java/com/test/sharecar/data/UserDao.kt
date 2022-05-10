@@ -17,4 +17,7 @@ interface UserDao {
 
     @Query("SELECT * FROM user_table")
     fun readAllData(): LiveData<List<User>>
+
+    @Query("select * from user_table ORDER by ROWID desc limit 1")
+    fun getLatestEntry(): LiveData<User>
 }

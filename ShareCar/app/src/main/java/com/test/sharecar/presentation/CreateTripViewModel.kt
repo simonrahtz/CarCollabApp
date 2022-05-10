@@ -3,25 +3,24 @@ package com.test.sharecar.presentation
 
 import android.app.Application
 import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Context
 import androidx.lifecycle.*
 import com.test.sharecar.data.ShareCarDatabase
 import com.test.sharecar.data.Trip
-import com.test.sharecar.data.UserRepository
+import com.test.sharecar.data.ShareCarRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
 class CreateTripViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: UserRepository
+    private val repository: ShareCarRepository
 
     init {
         val db = ShareCarDatabase.getDatabase(application)
         val userDao = db.userDao()
         val tripDao = db.tripDao()
-        repository = UserRepository(userDao, tripDao)
+        repository = ShareCarRepository(userDao, tripDao)
     }
 
     private val _time = MutableLiveData("")
