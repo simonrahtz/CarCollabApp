@@ -34,7 +34,7 @@ fun MainScreen() {
     Scaffold(
         bottomBar = { BottomNavigationBar(navController) }
     ) {
-        Navigation(navController)
+        BottomNavigation(navController)
     }
 }
 
@@ -79,7 +79,7 @@ fun BottomNavigationBar(navController: NavController) {
 }
 
 @Composable
-fun Navigation(navController: NavHostController) {
+fun BottomNavigation(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = BottomBarScreen.Trip.route

@@ -22,7 +22,7 @@ import com.test.sharecar.components.TitleText
 fun ConfirmTripDetails() {
 
     val viewModel =
-        CreateTripViewModel(LocalContext.current.applicationContext as Application)
+        ConfirmTripViewModel(LocalContext.current.applicationContext as Application)
     val latestTripEntry by viewModel.latestTrip.observeAsState()
 
     Column(
@@ -82,7 +82,7 @@ fun InfoItem(title: String, info: String) {
                 color = Color.DarkGray,
                 fontSize = 20.sp,
                 modifier = Modifier.weight(0.8f),
-                maxLines = 1
+                maxLines = 2
             )
             Spacer(modifier = Modifier.width(120.dp))
 

@@ -12,7 +12,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.Navigation
 import com.test.sharecar.Screen
 import com.test.sharecar.components.BoldText
@@ -24,10 +23,10 @@ import com.test.sharecar.data.Trip
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun EnterTripDetails(navController: NavController) {
+fun CreateTrip(navController: NavController) {
 
     val context = LocalContext.current
-    val viewModel: DateTimePickerViewModel = viewModel()
+    val viewModel: CreateTripViewModel = viewModel()
     val dateTime = viewModel.time.observeAsState()
     var address by remember { mutableStateOf("") }
     val onAddressTextChange = { text: String -> address = text }
@@ -88,6 +87,7 @@ fun EnterTripDetails(navController: NavController) {
                 ) {
                     Text(text = "Confirm", color = Color.White)
                 }
+                Spacer(modifier = Modifier.padding(bottom = 50.dp))
 
             }
         },
