@@ -15,36 +15,7 @@ import com.test.sharecar.data.DataCache
 
 @Composable
 fun MapScreen() {
-    Scaffold {
 
-
-        //val trip = DataCache.currentTrip[0]
-        //val destination = trip?.getEndAddress()
-        val destination = geoCoder("17 Brooker Street, St Marys", LocalContext.current)
-
-        val cameraPositionState = rememberCameraPositionState {
-            position = destination?.let { it1 -> CameraPosition.fromLatLngZoom(it1, 15f) }!!
-        }
-
-
-        GoogleMap(
-            modifier = Modifier.fillMaxSize(),
-            properties = MapProperties(),
-            uiSettings = MapUiSettings(zoomControlsEnabled = true),
-            cameraPositionState = cameraPositionState,
-
-            ) {
-
-                Marker(
-                    position = destination,
-
-                    )
-
-
-
-        }
-
-    }
 }
 
 

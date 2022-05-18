@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.Navigation
 import com.test.sharecar.Screen
 import com.test.sharecar.components.BoldText
@@ -36,7 +37,7 @@ fun TripScreen(navController: NavController) {
     BackdropScaffold(
         appBar = { },
         backLayerContent = {
-            TitleText(text = "Enter Trip Details", padding = 20,Color.White)
+            TitleText(text = "Enter Trip Details", padding = 20, Color.White)
         },
         frontLayerContent = {
             Column(
@@ -81,7 +82,7 @@ fun TripScreen(navController: NavController) {
                         .fillMaxWidth()
                         .height(50.dp),
                     onClick = {
-                        viewModel.insertTrip(Trip(0, dateTime.value, address))
+                        viewModel.storeTrip(address,dateTime.value,context)
                         navController.navigate(Screen.ConfirmTrip.route)
 
                     }
@@ -96,11 +97,10 @@ fun TripScreen(navController: NavController) {
     ) { }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun EnterTripDetailsPreview() {
-    Navigation()
+    TripScreen(navController = rememberNavController())
 }
 
 

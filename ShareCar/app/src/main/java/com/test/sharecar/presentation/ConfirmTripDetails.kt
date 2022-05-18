@@ -1,7 +1,9 @@
 package com.test.sharecar.presentation
 
 import android.app.Application
+import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -12,8 +14,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,9 +28,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.R
+import com.test.sharecar.data.Car
+import com.test.sharecar.data.DataCache
 import com.test.sharecar.data.Trip
 
 
@@ -51,17 +55,25 @@ fun ConfirmTripDetails(navController: NavController) {
                 .height(100.dp)
                 .fillMaxWidth()
         )
-        MainContent()
+        MainContent(context, viewModel, latestTripEntry)
     }
 }
 
 @Composable
-fun MainContent() {
+fun MainContent(context: Context, viewModel: ConfirmTripViewModel, trip: Trip) {
+
+    val context = context
+    val viewModel = viewModel
+    val trip = trip
+
+
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(24.dp, 24.dp, 0.dp, 0.dp))
             .fillMaxHeight()
+
             .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -78,18 +90,21 @@ fun MainContent() {
         )
         HorizontalDivider()
         Spacer(modifier = Modifier.height(24.dp))
-        ImageItem(title = "DESTINATION", content = "PLUMPTON", R.drawable.ic_location_trip)
+        ImageItem(title = "DESTINATION", content = trip.destination, R.drawable.ic_location_trip)
         Spacer(modifier = Modifier.height(12.dp))
-        ImageItem(title = "DATE", content = "04/05/22", R.drawable.ic_date_trip)
+        ImageItem(title = "DATE", content = trip.date, R.drawable.ic_date_trip)
         Spacer(modifier = Modifier.height(12.dp))
-        ImageItem(title = "CAR", content = "MAZDA 626", R.drawable.ic_car_trip)
+        ImageItem(title = "CAR", content = Car().name + " " + Car().make, R.drawable.ic_car_trip)
         Spacer(modifier = Modifier.height(30.dp))
-        TextItem(title = "Distance", content = "48km")
+        TextItem(
+            title = "Distance",
+            content = trip.distance + "km"
+        )
         HorizontalDivider()
         Spacer(modifier = Modifier.height(32.dp))
         TextItem(title = "Petrol Price", content = "$1.67")
         Spacer(modifier = Modifier.height(48.dp))
-        TextBoldItem(title = "TOTAL", content = "$22.50")
+        TextBoldItem(title = "TOTAL", content = "$" + trip.cost)
         Spacer(modifier = Modifier.height(12.dp))
         ButtonItem()
     }
@@ -215,4 +230,10 @@ fun HorizontalDivider() {
         )
         Spacer(modifier = Modifier.weight(0.05f))
     }
+}
+
+@Preview
+@Composable
+fun Preview() {
+    ConfirmTripDetails(navController = rememberNavController())
 }
