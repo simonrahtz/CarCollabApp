@@ -22,13 +22,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.components.TitleText
+import com.test.sharecar.data.Trip
 
 @Composable
 fun ConfirmTripDetails(navController: NavHostController) {
 
+    val context = LocalContext.current
     val viewModel =
-        ConfirmTripViewModel(LocalContext.current.applicationContext as Application)
-    val latestTripEntry by viewModel.latestTrip.observeAsState()
+        ConfirmTripViewModel(context.applicationContext as Application)
+    val latestTripEntry by viewModel.latestTrip.observeAsState(Trip())
 
     Column(
         modifier = Modifier
@@ -68,14 +70,19 @@ fun ConfirmTripDetails(navController: NavHostController) {
                 modifier = Modifier
                     .padding(bottom = 40.dp)
             )
-            latestTripEntry?.let {
-                InfoItem(title = "Date", info = it.date!!)
-                Spacer(
-                    modifier = Modifier
-                        .height(20.dp)
-                )
-                InfoItem(title = "Destination", info = it.destination!!)
-            }
+
+            //InfoItem(title = "Date", info = latestTripEntry.date)
+            Spacer(
+                modifier = Modifier
+                    .height(20.dp)
+            )
+            InfoItem(
+                title = "distance",
+                info = viewModel.calculateDistance("8 Parkwood street, Plumpton", context)
+                    .toString()
+
+            )
+
         }
     }
 }

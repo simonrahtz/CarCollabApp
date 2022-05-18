@@ -7,10 +7,19 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity(tableName = "trip_table")
-data class Trip (
-    @PrimaryKey(autoGenerate = true) val tripId: Int,
-    @ColumnInfo(name = "date") val date: String?,
+class Trip {
+    @PrimaryKey(autoGenerate = true) var tripId = 0
+    @ColumnInfo(name = "date") var date = ""
     //@ColumnInfo(name = "time") val time: String?,
-    @ColumnInfo(name = "destination") val destination: String?,
+    @ColumnInfo(name = "destination") var destination = ""
 
-    )
+    constructor()
+
+    constructor(id: Int, date: String, address: String){
+        this.tripId = id
+        this.date = date
+        this.destination = address
+    }
+
+
+}

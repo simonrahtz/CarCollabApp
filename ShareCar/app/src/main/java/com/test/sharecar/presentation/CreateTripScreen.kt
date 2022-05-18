@@ -27,7 +27,7 @@ fun CreateTrip(navController: NavController) {
 
     val context = LocalContext.current
     val viewModel: CreateTripViewModel = viewModel()
-    val dateTime = viewModel.time.observeAsState()
+    val dateTime = viewModel.time.observeAsState(String())
     var address by remember { mutableStateOf("") }
     val onAddressTextChange = { text: String -> address = text }
 

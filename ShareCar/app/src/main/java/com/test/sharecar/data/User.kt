@@ -1,14 +1,41 @@
 package com.test.sharecar.data
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "user_table")
-data class User (
+class User {
+
+
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val name: String,
-    val email: String,
-    val phoneNo: String,
-    val address: String
-)
+    @ColumnInfo("id")
+    var id: Int = 0
+    @ColumnInfo("name")
+    var name: String = ""
+    @ColumnInfo("email")
+    var email: String = ""
+    @ColumnInfo("phoneNo")
+    var phoneNo: String = ""
+    @ColumnInfo("address")
+    var address: String = ""
+    @ColumnInfo("password")
+    var password: String = ""
+
+    constructor()
+
+    constructor(id: Int, name: String, email: String, phone: String, address: String){
+        this.id = id
+        this.email = email
+        this.name = name
+        this.phoneNo = phone
+        this.address = address
+
+    }
+
+
+
+}
+
+
+
