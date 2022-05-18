@@ -10,9 +10,7 @@ import com.test.sharecar.presentation.*
 fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.CreateTrip.route) {
-        composable(route = Screen.CreateTrip.route) {
-            CreateTrip(navController = navController)
-        }
+
         composable(
             route = Screen.ConfirmTrip.route
         ) {

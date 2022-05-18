@@ -18,7 +18,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.test.sharecar.Screen
 import com.test.sharecar.presentation.ConfirmTripDetails
-import com.test.sharecar.presentation.CreateTrip
 import com.test.sharecar.presentation.MapScreen
 import com.test.sharecar.presentation.UserProfile
 
@@ -103,9 +102,6 @@ fun BottomNavigation(navController: NavHostController) {
         }
         composable(BottomBarScreen.User.route) {
             UserScreen(navController = navController)
-        }
-        composable(Screen.CreateTrip.route) {
-            CreateTrip(navController = navController)
         }
         composable(
             Screen.ConfirmTrip.route

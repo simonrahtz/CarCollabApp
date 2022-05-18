@@ -1,5 +1,7 @@
 package com.test.sharecar.presentation.bottomnavigation
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -94,10 +96,13 @@ fun TripScreen(navController: NavController) {
     ) { }
 }
 
+
+
 @Preview(showBackground = true)
 @Composable
 fun EnterTripDetailsPreview() {
     TripScreen(navController = rememberNavController())
+
 }
 
 
