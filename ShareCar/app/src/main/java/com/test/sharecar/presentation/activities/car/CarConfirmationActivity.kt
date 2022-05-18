@@ -20,10 +20,10 @@ class CarConfirmationActivity : AppCompatActivity() {
 
 
         with(binding){
-            regNo.text = car?.regNo
+            //regNo.text = car?.regNo
             make.text = car?.make
-            model.text = car?.model
-            regDueDate.text = car?.getNextRegDueDate().toString()
+            //model.text = car?.model
+            //regDueDate.text = car?.getNextRegDueDate().toString()
         }
 
         binding.addCar.setOnClickListener {

@@ -1,8 +1,8 @@
 package com.test.sharecar.presentation.activities.car
 
 import androidx.lifecycle.ViewModel
+import com.test.sharecar.data.Car
 import com.test.sharecar.data.DataCache
-import com.test.sharecar.models.Car
 
 
 class EnterCarViewModel: ViewModel() {
@@ -13,7 +13,7 @@ class EnterCarViewModel: ViewModel() {
         regNo: String, make: String, model: String, regDueDate: String
     ) {
         //store user in cache
-        DataCache.currentCar[id] = Car(id, regNo, make, model, regDueDate)
+        DataCache.currentCar[id] = Car(make, model)
 
         //increment id to keep it unique
         id++

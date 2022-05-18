@@ -62,8 +62,13 @@ fun BottomNavigationBar(navController: NavController) {
 
         items.forEach { item ->
             BottomNavigationItem(
-                icon = { Icon(painter = painterResource(id = item.icon), contentDescription = item.title)},
-                label = { Text(text = item.title)},
+                icon = {
+                    Icon(
+                        painter = painterResource(id = item.icon),
+                        contentDescription = item.title
+                    )
+                },
+                label = { Text(text = item.title) },
                 selectedContentColor = Color.Black,
                 unselectedContentColor = Color.Black.copy(0.4f),
                 alwaysShowLabel = true,
@@ -102,14 +107,15 @@ fun BottomNavigation(navController: NavHostController) {
         composable(Screen.CreateTrip.route) {
             CreateTrip(navController = navController)
         }
-        composable(Screen.ConfirmTrip.route
+        composable(
+            Screen.ConfirmTrip.route
         ) {
             ConfirmTripDetails(navController = navController)
         }
-        composable(Screen.Map.route){
+        composable(Screen.Map.route) {
             MapScreen()
         }
-        composable(Screen.UserProfile.route){
+        composable(Screen.UserProfile.route) {
             UserProfile()
         }
     }

@@ -1,6 +1,5 @@
 package com.test.sharecar.presentation.bottomnavigation
 
-import com.test.sharecar.presentation.CreateTripViewModel
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -13,13 +12,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.test.sharecar.Navigation
+import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.Screen
 import com.test.sharecar.components.BoldText
 import com.test.sharecar.components.CustomTextField
 import com.test.sharecar.components.DefaultButton
 import com.test.sharecar.components.TitleText
-import com.test.sharecar.data.Trip
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -27,7 +25,7 @@ import com.test.sharecar.data.Trip
 fun TripScreen(navController: NavController) {
 
     val context = LocalContext.current
-    val viewModel: CreateTripViewModel = viewModel()
+    val viewModel: TripViewModel = viewModel()
     val dateTime = viewModel.time.observeAsState(String())
     var address by remember { mutableStateOf("") }
     val onAddressTextChange = { text: String -> address = text }
@@ -36,7 +34,7 @@ fun TripScreen(navController: NavController) {
     BackdropScaffold(
         appBar = { },
         backLayerContent = {
-            TitleText(text = "Enter Trip Details", padding = 20,Color.White)
+            TitleText(text = "Enter Trip Details", padding = 20, Color.White)
         },
         frontLayerContent = {
             Column(
@@ -81,7 +79,7 @@ fun TripScreen(navController: NavController) {
                         .fillMaxWidth()
                         .height(50.dp),
                     onClick = {
-                        viewModel.insertTrip(Trip(0, dateTime.value, address))
+                        viewModel.storeTrip(address,dateTime.value,context)
                         navController.navigate(Screen.ConfirmTrip.route)
 
                     }
@@ -96,11 +94,10 @@ fun TripScreen(navController: NavController) {
     ) { }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun EnterTripDetailsPreview() {
-    Navigation()
+    TripScreen(navController = rememberNavController())
 }
 
 

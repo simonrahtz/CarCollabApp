@@ -1,20 +1,23 @@
-package com.test.sharecar.presentation
+package com.test.sharecar.presentation.bottomnavigation
 
 
 import android.app.Application
 import android.app.DatePickerDialog
 import android.content.Context
 import androidx.lifecycle.*
-import com.test.sharecar.data.ShareCarDatabase
-import com.test.sharecar.data.Trip
-import com.test.sharecar.data.ShareCarRepository
+import com.test.sharecar.GeoCoder
+import com.test.sharecar.data.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
-class CreateTripViewModel(application: Application) : AndroidViewModel(application) {
+class TripViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: ShareCarRepository
+    private val _time = MutableLiveData("")
+    private val fuelPrice = 176.70f //cents
+    var time: LiveData<String> = _time
+
 
     init {
         val db = ShareCarDatabase.getDatabase(application)
@@ -23,8 +26,6 @@ class CreateTripViewModel(application: Application) : AndroidViewModel(applicati
         repository = ShareCarRepository(userDao, tripDao)
     }
 
-    private val _time = MutableLiveData("")
-    var time: LiveData<String> = _time
 
     fun selectDateTime(context: Context) {
         var date: String = ""
@@ -52,10 +53,32 @@ class CreateTripViewModel(application: Application) : AndroidViewModel(applicati
         _time.value = dateTime
     }
 
+    fun storeTrip(address: String, date: String, context: Context) {
+        val distance = calculateDistance(address, context)
+        val cost = calculateCost(distance)
+        val trip =
+            Trip(0, date, address, String.format("%.2f", distance), String.format("%.2f", cost))
+        insertTrip(trip)
+    }
+
+    private fun calculateDistance(address: String, context: Context): Float {
+
+        val start = Car().address
+        return GeoCoder().getDistance(start, address, context)
+    }
+
     fun insertTrip(trip: Trip) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addTrip(trip)
         }
+    }
+
+    private fun calculateCost(distance: Float): Float {
+        val fuelConsumption = Car().fuelPer100km
+        val litres = (distance / 100) * fuelConsumption
+        //cost of trip, multiply by 2 for there and back
+        return ((litres * fuelPrice) / 100) * 2
+
     }
 }
 
