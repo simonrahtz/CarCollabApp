@@ -25,11 +25,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.test.sharecar.R
+import com.test.sharecar.Screen
 import com.test.sharecar.presentation.HorizontalDivider
 
 @Composable
-fun UserScreen() {
+fun UserScreen(navController: NavController) {
 
     val username = "Username"
 
@@ -40,7 +42,7 @@ fun UserScreen() {
 
         ) {
 
-        TopBar()
+        TopBar(navController)
         Spacer(modifier = Modifier.height(36.dp))
         TripInfo()
     }
@@ -75,7 +77,7 @@ fun TripInfo() {
 }
 
 @Composable
-fun TopBar() {
+fun TopBar(navController: NavController) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Spacer(modifier = Modifier.height(24.dp))
         Text(
@@ -102,7 +104,7 @@ fun TopBar() {
                 color = Color.White,
                 fontSize = 18.sp,
                 modifier = Modifier.clickable {
-
+                    navController.navigate(Screen.UserProfile.route)
                 })
         }
     }

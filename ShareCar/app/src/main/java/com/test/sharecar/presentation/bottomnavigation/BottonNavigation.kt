@@ -16,6 +16,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.test.sharecar.Screen
+import com.test.sharecar.presentation.ConfirmTripDetails
+import com.test.sharecar.presentation.CreateTrip
+import com.test.sharecar.presentation.MapScreen
+import com.test.sharecar.presentation.UserProfile
 
 class BrowserComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,13 +91,26 @@ fun BottomNavigation(navController: NavHostController) {
         startDestination = BottomBarScreen.Trip.route
     ) {
         composable(BottomBarScreen.Trip.route) {
-            TripScreen()
+            TripScreen(navController = navController)
         }
         composable(BottomBarScreen.Cars.route) {
             CarScreen()
         }
         composable(BottomBarScreen.User.route) {
-            UserScreen()
+            UserScreen(navController = navController)
+        }
+        composable(Screen.CreateTrip.route) {
+            CreateTrip(navController = navController)
+        }
+        composable(Screen.ConfirmTrip.route
+        ) {
+            ConfirmTripDetails(navController = navController)
+        }
+        composable(Screen.Map.route){
+            MapScreen()
+        }
+        composable(Screen.UserProfile.route){
+            UserProfile()
         }
     }
 }
