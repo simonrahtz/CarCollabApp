@@ -16,10 +16,13 @@ fun Navigation() {
         composable(
             route = Screen.ConfirmTrip.route
         ) {
-            ConfirmTripDetails(navController = navController)
+           ConfirmTripDetails(navController = navController)
         }
         composable(route = Screen.Map.route){
             MapScreen()
+        }
+        composable(route = Screen.Map.route){
+            UserProfile()
         }
 
     }
