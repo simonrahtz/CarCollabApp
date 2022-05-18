@@ -1,6 +1,5 @@
 package com.test.sharecar.presentation.bottomnavigation
 
-import com.test.sharecar.presentation.CreateTripViewModel
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -14,13 +13,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.test.sharecar.Navigation
 import com.test.sharecar.Screen
 import com.test.sharecar.components.BoldText
 import com.test.sharecar.components.CustomTextField
 import com.test.sharecar.components.DefaultButton
 import com.test.sharecar.components.TitleText
-import com.test.sharecar.data.Trip
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -28,7 +25,7 @@ import com.test.sharecar.data.Trip
 fun TripScreen(navController: NavController) {
 
     val context = LocalContext.current
-    val viewModel: CreateTripViewModel = viewModel()
+    val viewModel: TripViewModel = viewModel()
     val dateTime = viewModel.time.observeAsState(String())
     var address by remember { mutableStateOf("") }
     val onAddressTextChange = { text: String -> address = text }

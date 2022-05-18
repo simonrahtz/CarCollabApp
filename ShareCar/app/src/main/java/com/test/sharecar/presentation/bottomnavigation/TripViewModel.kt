@@ -1,4 +1,4 @@
-package com.test.sharecar.presentation
+package com.test.sharecar.presentation.bottomnavigation
 
 
 import android.app.Application
@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
-class CreateTripViewModel(application: Application) : AndroidViewModel(application) {
+class TripViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: ShareCarRepository
     private val _time = MutableLiveData("")
