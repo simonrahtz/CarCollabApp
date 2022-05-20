@@ -1,5 +1,6 @@
 package com.test.sharecar.presentation.bottomnavigation
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -22,6 +23,7 @@ import androidx.compose.ui.unit.toSize
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.test.sharecar.GeoCoder
 import com.test.sharecar.Screen
 import com.test.sharecar.components.BoldText
 import com.test.sharecar.components.CustomTextField
@@ -88,7 +90,7 @@ fun TripScreen(navController: NavController) {
                         .fillMaxWidth()
                         .height(50.dp),
                     onClick = {
-                        viewModel.storeTrip(address,dateTime.value,context)
+                        viewModel.storeTrip(address, dateTime.value, context)
                         navController.navigate(Screen.ConfirmTrip.route)
 
                     }
@@ -110,7 +112,7 @@ fun DropDownMenu() {
     val suggestions = listOf("1 PM", "2 PM", "3 PM", "4 PM")
     var selectedText by remember { mutableStateOf("") }
 
-    var textfieldSize by remember { mutableStateOf(Size.Zero)}
+    var textfieldSize by remember { mutableStateOf(Size.Zero) }
 
     val icon = if (expanded)
         Icons.Filled.KeyboardArrowUp
@@ -128,9 +130,9 @@ fun DropDownMenu() {
                     //This value is used to assign to the DropDown the same width
                     textfieldSize = coordinates.size.toSize()
                 },
-            label = {Text("Label")},
+            label = { Text("Label") },
             trailingIcon = {
-                Icon(icon,"contentDescription",
+                Icon(icon, "contentDescription",
                     Modifier.clickable { expanded = !expanded })
             }
         )
@@ -138,7 +140,7 @@ fun DropDownMenu() {
             expanded = expanded,
             onDismissRequest = { expanded = false },
             modifier = Modifier
-                .width(with(LocalDensity.current){textfieldSize.width.toDp()})
+                .width(with(LocalDensity.current) { textfieldSize.width.toDp() })
         ) {
             suggestions.forEach { label ->
                 DropdownMenuItem(onClick = {
@@ -153,10 +155,38 @@ fun DropDownMenu() {
 
 }
 
+@Composable
+fun SearchQuery() {
+    val context = LocalContext.current
+    var text by remember { mutableStateOf("") }
+
+
+    Column(modifier = Modifier.fillMaxWidth()) {
+
+        OutlinedTextField(value = text, onValueChange = {
+            text = if (text==""){
+                it
+            } else{
+                if (GeoCoder().getAddressFromString(text, context).isEmpty()){
+                    it
+                } else GeoCoder().getAddressFromString(text, context)[0].postalCode
+            }
+        })
+        Button(onClick = {
+            var result = GeoCoder().getAddressFromString(text, context)
+            Toast.makeText(context, result.size.toString(), Toast.LENGTH_LONG).show()
+        }) {
+
+        }
+
+    }
+
+}
+
 @Preview(showBackground = true)
 @Composable
 fun EnterTripDetailsPreview() {
-    DropDownMenu()
+    SearchQuery()
 }
 
 

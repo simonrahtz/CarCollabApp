@@ -25,6 +25,14 @@ class GeoCoder {
         return addresses[0]
     }
 
+    fun getAddressFromString(address: String, context: Context): List<Address>{
+
+        return Geocoder(context).getFromLocationName(
+            address, 10
+        )
+
+    }
+
 
 
     fun getDistance(startAddress: String, endAddress: String, context: Context): Float {
