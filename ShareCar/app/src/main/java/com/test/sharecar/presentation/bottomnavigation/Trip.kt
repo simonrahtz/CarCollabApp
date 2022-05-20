@@ -1,9 +1,12 @@
 package com.test.sharecar.presentation.bottomnavigation
 
+import android.location.Address
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -91,7 +94,7 @@ fun TripScreen(navController: NavController) {
                         .height(50.dp),
                     onClick = {
                         viewModel.storeTrip(address, dateTime.value, context)
-                        navController.navigate(Screen.ConfirmTrip.route)
+                        //navController.navigate(Screen.ConfirmTrip.route)
 
                     }
                 ) {
@@ -159,24 +162,35 @@ fun DropDownMenu() {
 fun SearchQuery() {
     val context = LocalContext.current
     var text by remember { mutableStateOf("") }
+    val onTextChange: () -> Unit
+    var addresses = listOf<Address>()
 
 
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
         OutlinedTextField(value = text, onValueChange = {
-            text = if (text==""){
-                it
-            } else{
-                if (GeoCoder().getAddressFromString(text, context).isEmpty()){
-                    it
-                } else GeoCoder().getAddressFromString(text, context)[0].postalCode
-            }
+            text = it
         })
-        Button(onClick = {
-            var result = GeoCoder().getAddressFromString(text, context)
-            Toast.makeText(context, result.size.toString(), Toast.LENGTH_LONG).show()
-        }) {
+        if (text.length > 5) {
+            addresses = GeoCoder().getAddressFromString(text, context)
+            Toast.makeText(context,addresses.size,Toast.LENGTH_LONG).show()
+        }
 
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+
+        ) {
+            items(addresses) { address ->
+                Box(modifier = Modifier.padding(10.dp)) {
+                    Text(text = address.getAddressLine(0))
+                }
+            }
         }
 
     }
