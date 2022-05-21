@@ -21,8 +21,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         val tripDao = db.tripDao()
         repository = ShareCarRepository(userDao, tripDao)
 
-        repository.getCurrentUser()
-        currentUser = repository.latestUser
+        currentUser = repository.getCurrentUser()
     }
 
 
