@@ -33,6 +33,11 @@ class User {
         this.address = address
     }
 
+    constructor(id: Int, name: String){
+        this.userId = id
+        this.name = name
+    }
+
 
 
 }

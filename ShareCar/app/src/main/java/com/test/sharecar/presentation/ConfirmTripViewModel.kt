@@ -19,7 +19,6 @@ class ConfirmTripViewModel(application: Application) : AndroidViewModel(applicat
         val userDao = db.userDao()
         val tripDao = db.tripDao()
         repository = ShareCarRepository(userDao,tripDao)
-
         allTrips = repository.readAllTrips
         latestTrip = repository.latestTrip
     }

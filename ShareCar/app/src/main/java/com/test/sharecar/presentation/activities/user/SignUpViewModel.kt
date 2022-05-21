@@ -2,7 +2,9 @@ package com.test.sharecar.presentation.activities.user
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.test.sharecar.data.DataCache
 import com.test.sharecar.data.User
 import com.test.sharecar.data.ShareCarDatabase
 import com.test.sharecar.data.ShareCarRepository
@@ -27,6 +29,7 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
         phone: String,
         address: String
     ) {
+        DataCache.newUser = true
         addUser(User(0, name, email, phone, address))
     }
 

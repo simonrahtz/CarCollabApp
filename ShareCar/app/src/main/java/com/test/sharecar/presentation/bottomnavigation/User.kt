@@ -1,6 +1,7 @@
 package com.test.sharecar.presentation.bottomnavigation
 
 import android.app.Activity
+import android.app.Application
 import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -13,11 +14,14 @@ import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
@@ -29,12 +33,17 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.R
 import com.test.sharecar.Screen
+import com.test.sharecar.data.DataCache
+import com.test.sharecar.data.User
 import com.test.sharecar.presentation.HorizontalDivider
 
 @Composable
 fun UserScreen(navController: NavController) {
 
-    val username = "Username"
+    val context = LocalContext.current
+    val viewModel = UserViewModel(context.applicationContext as Application)
+    val user by viewModel.currentUser.observeAsState(User())
+
 
     Column(
         modifier = Modifier
@@ -43,7 +52,7 @@ fun UserScreen(navController: NavController) {
 
         ) {
 
-        TopBar(navController)
+        TopBar(navController,user)
         Spacer(modifier = Modifier.height(36.dp))
         TripInfo()
     }
@@ -78,11 +87,11 @@ fun TripInfo() {
 }
 
 @Composable
-fun TopBar(navController: NavController) {
+fun TopBar(navController: NavController, user: User) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            text = "Hello Simon",
+            text = "Hello " + user.name,
             color = Color.White,
             fontSize = 36.sp,
             modifier = Modifier.padding(24.dp, 0.dp, 0.dp, 12.dp)
