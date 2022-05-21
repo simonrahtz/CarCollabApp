@@ -5,7 +5,7 @@ import android.app.Application
 import android.app.DatePickerDialog
 import android.content.Context
 import androidx.lifecycle.*
-import com.test.sharecar.GeoCoder
+import com.test.sharecar.CustomGeoCoder
 import com.test.sharecar.data.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -64,10 +64,10 @@ class TripViewModel(application: Application) : AndroidViewModel(application) {
     private fun calculateDistance(address: String, context: Context): Float {
 
         val start = Car().address
-        return GeoCoder().getDistance(start, address, context)
+        return CustomGeoCoder(context).getDistance(start, address)
     }
 
-    fun insertTrip(trip: Trip) {
+    private fun insertTrip(trip: Trip) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addTrip(trip)
         }

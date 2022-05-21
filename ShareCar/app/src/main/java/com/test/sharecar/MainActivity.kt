@@ -7,16 +7,13 @@ import androidx.activity.ComponentActivity
 import com.test.sharecar.presentation.activities.LogInActivity
 
 
-class MainActivity : ComponentActivity(){
+class MainActivity : ComponentActivity() {
 
-        override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         startActivity(Intent(this, LogInActivity::class.java))
 
     }
-
 
 }
 

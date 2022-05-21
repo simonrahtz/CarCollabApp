@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.toSize
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.test.sharecar.GeoCoder
+import com.test.sharecar.CustomGeoCoder
 import com.test.sharecar.components.*
 
 
@@ -65,7 +65,7 @@ fun TripScreen(navController: NavController) {
                 // Start Search for addresses when the input string is more than 10 characters
                 if (destination.length > 10) {
                     geocoderResults =
-                        GeoCoder().getAddressFromString(destination, context).toMutableList()
+                        CustomGeoCoder(context).getAddressFromString(destination).toMutableList()
                 }
 
                 LazyColumn(
@@ -95,10 +95,7 @@ fun TripScreen(navController: NavController) {
                         }
                     }
                 }
-                Divider(
-                    modifier = Modifier.padding(vertical = 20.dp),
-                    color = Color.LightGray
-                )
+                LightGreyDivider(padding = 20)
                 Text(text = "Book a date")
                 Row(
                     Modifier.fillMaxWidth(),
@@ -109,10 +106,7 @@ fun TripScreen(navController: NavController) {
                     Spacer(modifier = Modifier.padding(30.dp))
                     BoldText(text = "Date: " + dateTime.value)
                 }
-                Divider(
-                    modifier = Modifier.padding(vertical = 50.dp),
-                    color = Color.LightGray
-                )
+                LightGreyDivider(padding = 50)
             }
             Column(
                 modifier = Modifier
@@ -133,7 +127,6 @@ fun TripScreen(navController: NavController) {
                     Text(text = "Confirm", color = Color.White)
                 }
                 Spacer(modifier = Modifier.padding(bottom = 50.dp))
-
             }
         },
         peekHeight = 100.dp

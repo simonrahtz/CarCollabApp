@@ -9,7 +9,7 @@ import com.test.sharecar.data.ShareCarRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SignUpViewModel (application: Application): AndroidViewModel(application) {
+class SignUpViewModel(application: Application) : AndroidViewModel(application) {
 
 
     private val repository: ShareCarRepository
@@ -18,26 +18,19 @@ class SignUpViewModel (application: Application): AndroidViewModel(application) 
         val db = ShareCarDatabase.getDatabase(application)
         val userDao = db.userDao()
         val tripDao = db.tripDao()
-        repository = ShareCarRepository(userDao,tripDao)
+        repository = ShareCarRepository(userDao, tripDao)
     }
-
 
     fun createPerson(
-                     name: String,
-                     email: String,
-                     phone: String,
-                     address: String)
-    {
-
-        addUser(User(0,name,email,phone,address))
-        //store user in cache
-        //DataCache.currentUser[id] = Person(id,name,email,phone,address)
-
-        //increment id to keep it unique
-        //id++
+        name: String,
+        email: String,
+        phone: String,
+        address: String
+    ) {
+        addUser(User(0, name, email, phone, address))
     }
 
-    private fun addUser(user: User){
+    private fun addUser(user: User) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addUser(user)
         }

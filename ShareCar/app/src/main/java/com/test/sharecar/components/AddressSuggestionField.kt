@@ -15,19 +15,19 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.test.sharecar.GeoCoder
+import com.test.sharecar.CustomGeoCoder
 
 /**
  * A custom layout that displays an OutlinedTextField for an address input. A list of suggestions
  * will be displayed in a LazyColumn when input text is over 10 characters, using the Android
- * GeoCoder.getFromLocation method to return a list of Address objects based on the search query.
+ * CustomGeoCoder.getFromLocation method to return a list of Address objects based on the search query.
  *
  * If a user clicks a suggestion the LazyColumn List will be cleared and the TextField text will
  * be replaced by suggestion
  *
- * Note: GeoCoder needs to be localised to the user's region
+ * Note: CustomGeoCoder needs to be localised to the user's region
  *
- * Params: context - the context used for the GeoCoder (use LocalContext.Current).
+ * Params: context - the context used for the CustomGeoCoder (use LocalContext.Current).
  *         searchQuery - the String containing the TextField input
  *         label - the label given to the OutLinedTextField
  */
@@ -54,7 +54,7 @@ fun AddressSuggestionField(
 
     // Start Search for addresses when the input string is more than 10 characters
     if (searchQuery.length > 10) {
-        addresses = GeoCoder().getAddressFromString(searchQuery, context).toMutableList()
+        addresses = CustomGeoCoder(context).getAddressFromString(searchQuery).toMutableList()
     }
 
     LazyColumn(

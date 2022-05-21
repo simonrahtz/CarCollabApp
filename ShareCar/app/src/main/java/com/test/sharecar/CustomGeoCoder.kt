@@ -8,16 +8,17 @@ import com.google.android.gms.maps.model.LatLng
 import java.util.*
 import kotlin.math.roundToInt
 
-class GeoCoder {
+class CustomGeoCoder(context: Context) {
+    val context = context
 
-    fun getLatLng(address: String, context: Context): LatLng {
+    fun getLatLng(address: String): LatLng {
         var geocoder = Geocoder(context,Locale.getDefault()).getFromLocationName(
             address, 1
         )
         return LatLng(geocoder[0].latitude, geocoder[0].longitude)
     }
 
-    fun getAddress(address: String, context: Context): Address {
+    fun getAddress(address: String): Address {
 
         val addresses = Geocoder(context).getFromLocationName(
             address, 1
@@ -25,8 +26,7 @@ class GeoCoder {
         return addresses[0]
     }
 
-    fun getAddressFromString(address: String, context: Context): List<Address>{
-
+    fun getAddressFromString(address: String): List<Address>{
 
         return Geocoder(context, Locale.getDefault()).getFromLocationName(
             address, 100
@@ -34,11 +34,9 @@ class GeoCoder {
 
     }
 
-
-
-    fun getDistance(startAddress: String, endAddress: String, context: Context): Float {
-        val start = getAddress(startAddress, context)
-        val end = getAddress(endAddress, context)
+    fun getDistance(startAddress: String, endAddress: String): Float {
+        val start = getAddress(startAddress)
+        val end = getAddress(endAddress)
         val startLocation = Location("").apply {
             latitude = start.latitude
             longitude = start.longitude
