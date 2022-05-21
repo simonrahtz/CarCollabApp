@@ -9,8 +9,8 @@ class User {
 
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo("id")
-    var id: Int = 0
+    @ColumnInfo("userId")
+    var userId: Int = 0
     @ColumnInfo("name")
     var name: String = ""
     @ColumnInfo("email")
@@ -22,15 +22,15 @@ class User {
     @ColumnInfo("password")
     var password: String = ""
 
+
     constructor()
 
     constructor(id: Int, name: String, email: String, phone: String, address: String){
-        this.id = id
+        this.userId = id
         this.email = email
         this.name = name
         this.phoneNo = phone
         this.address = address
-
     }
 
 
