@@ -1,12 +1,12 @@
 package com.test.sharecar.presentation.bottomnavigation
 
 import android.location.Address
-import android.widget.Toast
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -27,11 +27,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.GeoCoder
-import com.test.sharecar.Screen
-import com.test.sharecar.components.BoldText
-import com.test.sharecar.components.CustomTextField
-import com.test.sharecar.components.DefaultButton
-import com.test.sharecar.components.TitleText
+import com.test.sharecar.components.*
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -41,9 +37,10 @@ fun TripScreen(navController: NavController) {
     val context = LocalContext.current
     val viewModel: TripViewModel = viewModel()
     val dateTime = viewModel.time.observeAsState(String())
-    var address by remember { mutableStateOf("") }
-    val onAddressTextChange = { text: String -> address = text }
-
+    var destination by remember { mutableStateOf("") }
+    var geocoderResults = mutableListOf<Address>()
+    var listState: LazyListState = rememberLazyListState()
+    var suggestionClicked by remember { mutableStateOf(false) }
 
     BackdropScaffold(
         appBar = { },
@@ -55,16 +52,51 @@ fun TripScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(20.dp),
-
-                ) {
+            ) {
                 Text(text = "Enter Destination")
-                CustomTextField(
-                    title = "Type Address",
-                    textState = address,
-                    onTextChange = onAddressTextChange
-                )
+                CustomTextField(title = "Type Address",
+                    textState = destination,
+                    onTextChange = { destination = it },
+                    onClickCancel = {
+                        suggestionClicked = false
+                        destination = ""
+                    })
+
+                // Start Search for addresses when the input string is more than 10 characters
+                if (destination.length > 10) {
+                    geocoderResults =
+                        GeoCoder().getAddressFromString(destination, context).toMutableList()
+                }
+
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),
+                    state = listState
+                ) {
+
+                    //reset list when clicked
+                    if (suggestionClicked) geocoderResults.clear()
+                    items(geocoderResults) { address ->
+
+                        // Custom Address String - street number, street name and suburb
+                        var suggestion =
+                            address.subThoroughfare + " " + address.thoroughfare + " " + address.locality
+                        Box(
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .clickable(onClick = {
+                                    destination = suggestion
+                                    suggestionClicked = true
+
+                                })
+                        ) {
+                            Text(text = suggestion)
+                        }
+                    }
+                }
                 Divider(
-                    modifier = Modifier.padding(vertical = 50.dp),
+                    modifier = Modifier.padding(vertical = 20.dp),
                     color = Color.LightGray
                 )
                 Text(text = "Book a date")
@@ -93,7 +125,7 @@ fun TripScreen(navController: NavController) {
                         .fillMaxWidth()
                         .height(50.dp),
                     onClick = {
-                        viewModel.storeTrip(address, dateTime.value, context)
+                        viewModel.storeTrip(destination, dateTime.value, context)
                         //navController.navigate(Screen.ConfirmTrip.route)
 
                     }
@@ -158,49 +190,10 @@ fun DropDownMenu() {
 
 }
 
-@Composable
-fun SearchQuery() {
-    val context = LocalContext.current
-    var text by remember { mutableStateOf("") }
-    val onTextChange: () -> Unit
-    var addresses = listOf<Address>()
-
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        OutlinedTextField(value = text, onValueChange = {
-            text = it
-        })
-        if (text.length > 5) {
-            addresses = GeoCoder().getAddressFromString(text, context)
-
-        }
-
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-
-        ) {
-            items(addresses) { address ->
-                Box(modifier = Modifier.padding(10.dp)) {
-                    Text(text = address.getAddressLine(0))
-                }
-            }
-        }
-
-    }
-
-}
-
 @Preview(showBackground = true)
 @Composable
 fun EnterTripDetailsPreview() {
-    SearchQuery()
+    TripScreen(navController = rememberNavController())
 }
 
 

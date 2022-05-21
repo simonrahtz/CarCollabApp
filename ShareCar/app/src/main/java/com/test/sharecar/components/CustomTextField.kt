@@ -8,7 +8,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
 
@@ -16,7 +15,9 @@ import androidx.compose.ui.unit.sp
 fun CustomTextField(
     title: String,
     textState: String,
-    onTextChange: (String) -> Unit
+    onTextChange: (String) -> Unit,
+    onClickCancel: () -> Unit
+
 ) {
     OutlinedTextField(
         value = textState,
@@ -26,7 +27,7 @@ fun CustomTextField(
             Icon(imageVector = Icons.Default.Search, contentDescription = "search")
         },
         trailingIcon = {
-            IconButton(onClick = { onTextChange("") }) {
+            IconButton(onClick = onClickCancel) {
                 Icon(imageVector = Icons.Default.Cancel, contentDescription = "cancel")
             }
         },
