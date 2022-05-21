@@ -11,7 +11,7 @@ import kotlin.math.roundToInt
 class GeoCoder {
 
     fun getLatLng(address: String, context: Context): LatLng {
-        var geocoder = Geocoder(context).getFromLocationName(
+        var geocoder = Geocoder(context,Locale.getDefault()).getFromLocationName(
             address, 1
         )
         return LatLng(geocoder[0].latitude, geocoder[0].longitude)
@@ -27,8 +27,9 @@ class GeoCoder {
 
     fun getAddressFromString(address: String, context: Context): List<Address>{
 
-        return Geocoder(context).getFromLocationName(
-            address, 10
+
+        return Geocoder(context, Locale.getDefault()).getFromLocationName(
+            address, 100
         )
 
     }

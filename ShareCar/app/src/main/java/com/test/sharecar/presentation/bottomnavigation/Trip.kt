@@ -178,7 +178,7 @@ fun SearchQuery() {
         })
         if (text.length > 5) {
             addresses = GeoCoder().getAddressFromString(text, context)
-            Toast.makeText(context,addresses.size,Toast.LENGTH_LONG).show()
+
         }
 
         LazyColumn(
