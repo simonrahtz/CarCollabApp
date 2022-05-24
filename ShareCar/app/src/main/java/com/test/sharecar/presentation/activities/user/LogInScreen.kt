@@ -40,25 +40,9 @@ fun LoginScreen() {
     var userName by remember { mutableStateOf("") }
 
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        ClickableText(
-            text = AnnotatedString("Sign up here"),
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(20.dp),
-            onClick = {
-                context.startActivity(Intent(context, SignUpActivity::class.java))
-            },
-            style = TextStyle(
-                fontSize = 14.sp,
-                textDecoration = TextDecoration.Underline,
-                color = Purple700
-            )
-        )
-    }
+
     Column(
         modifier = Modifier.padding(20.dp),
-        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -96,7 +80,23 @@ fun LoginScreen() {
             ) {
                 Text(text = "Login")
             }
+
         }
+       
+            ClickableText(
+                text = AnnotatedString("Sign up here"),
+                modifier = Modifier
+                    .padding(20.dp),
+                onClick = {
+                    context.startActivity(Intent(context, SignUpActivity::class.java))
+                },
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    textDecoration = TextDecoration.Underline,
+                    color = Purple700
+                )
+            )
+
 
     }
 }

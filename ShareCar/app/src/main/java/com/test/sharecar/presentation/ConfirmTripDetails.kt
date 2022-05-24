@@ -2,17 +2,11 @@ package com.test.sharecar.presentation
 
 import android.app.Application
 import android.content.Context
-import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
@@ -20,20 +14,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.textInputServiceFactory
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.R
 import com.test.sharecar.data.Car
-import com.test.sharecar.data.DataCache
 import com.test.sharecar.data.Trip
 
 
@@ -55,17 +45,21 @@ fun ConfirmTripDetails(navController: NavController) {
                 .height(100.dp)
                 .fillMaxWidth()
         )
-        MainContent(context, viewModel, latestTripEntry)
+        MainContent(context, viewModel, latestTripEntry,navController)
     }
 }
 
 @Composable
-fun MainContent(context: Context, viewModel: ConfirmTripViewModel, trip: Trip) {
+fun MainContent(
+    context: Context,
+    viewModel: ConfirmTripViewModel,
+    trip: Trip,
+    navController: NavController
+) {
 
     val context = context
     val viewModel = viewModel
     val trip = trip
-
 
 
     Column(
@@ -106,17 +100,21 @@ fun MainContent(context: Context, viewModel: ConfirmTripViewModel, trip: Trip) {
         Spacer(modifier = Modifier.height(48.dp))
         TextBoldItem(title = "TOTAL", content = "$" + trip.cost)
         Spacer(modifier = Modifier.height(12.dp))
-        ButtonItem()
+        ButtonItem(onButtonClick = {
+            navController.popBackStack()
+        })
     }
 }
 
 @Composable
-fun ButtonItem() {
+fun ButtonItem(
+    onButtonClick: () -> Unit
+) {
     Row(modifier = Modifier.fillMaxWidth()) {
         Spacer(modifier = Modifier.weight(0.05f))
         Button(
             content = { Text(text = "Confirm") },
-            onClick = { /* no-op */ },
+            onClick = onButtonClick,
             modifier = Modifier
                 .weight(0.9f)
                 .height(48.dp),

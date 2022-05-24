@@ -21,6 +21,7 @@ class LogInViewModel(application: Application) : AndroidViewModel(application) {
         val tripDao = db.tripDao()
         repository = ShareCarRepository(userDao,tripDao)
         allUsers = repository.readAllUsers
+
     }
 
     fun searchForUser(name: String, users: List<User>): Boolean {

@@ -2,16 +2,11 @@ package com.test.sharecar.presentation
 
 
 import android.app.Application
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,19 +20,28 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.test.sharecar.CustomGeoCoder
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.R
+import com.test.sharecar.Screen
+import com.test.sharecar.data.DataCache
 import com.test.sharecar.data.User
-import com.test.sharecar.presentation.bottomnavigation.UserViewModel
+import com.test.sharecar.presentation.bottomnavigation.BottomBarScreen
 
 
 @Composable
-fun UserProfile() {
-    
+fun UserProfile(navController: NavController) {
+
     val context = LocalContext.current
     val viewModel = UserProfileViewModel(context.applicationContext as Application)
     val user by viewModel.currentUser.observeAsState(User())
-    //var userAddress = CustomGeoCoder(context).getAddress(user.address)
+
+    val onLogInClick = {navController.navigate(Screen.LogIn.route) {
+        navController.backQueue.clear()
+      }
+
+    }
 
 
     Column(
@@ -76,7 +80,8 @@ fun UserProfile() {
                 Spacer(modifier = Modifier.width(84.dp))
                 Text(
                     text = "Log Out",
-                    color = Color(185, 155, 248)
+                    color = Color(185, 155, 248),
+                    modifier = Modifier.clickable(onClick = onLogInClick)
                 )
                 Spacer(modifier = Modifier.width(24.dp))
                 Text(
@@ -165,5 +170,5 @@ fun InfoItem(title: String, info: String) {
 @Composable
 @Preview
 fun UserProfilePreview() {
-    UserProfile()
+    UserProfile(navController = rememberNavController())
 }

@@ -20,6 +20,7 @@ import com.test.sharecar.Screen
 import com.test.sharecar.presentation.ConfirmTripDetails
 import com.test.sharecar.presentation.MapScreen
 import com.test.sharecar.presentation.UserProfile
+import com.test.sharecar.presentation.activities.user.LoginScreen
 
 class BrowserComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,7 +113,10 @@ fun BottomNavigation(navController: NavHostController) {
             MapScreen()
         }
         composable(Screen.UserProfile.route) {
-            UserProfile()
+            UserProfile(navController = navController)
+        }
+        composable(Screen.LogIn.route){
+            LoginScreen()
         }
     }
 }
