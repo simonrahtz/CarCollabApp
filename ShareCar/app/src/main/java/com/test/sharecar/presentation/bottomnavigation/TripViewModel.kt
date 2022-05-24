@@ -17,6 +17,7 @@ class TripViewModel(application: Application) : AndroidViewModel(application) {
     private val _time = MutableLiveData("")
     private val fuelPrice = 176.70f //cents
     var time: LiveData<String> = _time
+    var currentUser: LiveData<User>
 
 
     init {
@@ -24,8 +25,9 @@ class TripViewModel(application: Application) : AndroidViewModel(application) {
         val userDao = db.userDao()
         val tripDao = db.tripDao()
         repository = ShareCarRepository(userDao, tripDao)
-    }
 
+        currentUser =  repository.getCurrentUser()
+    }
 
     fun selectDateTime(context: Context) {
         var date: String = ""
@@ -62,7 +64,6 @@ class TripViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun calculateDistance(address: String, context: Context): Float {
-
         val start = Car().address
         return CustomGeoCoder(context).getDistance(start, address)
     }

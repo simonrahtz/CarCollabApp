@@ -12,15 +12,14 @@ object DataCache {
     //list of users in system
     val currentUser = mutableMapOf<Int,User>()
 
+    val currentUserId = mutableListOf<Int>()
+
     //List of cars in system
     val currentCar = mutableMapOf<Int, Car>()
 
     //List of trips in system
     val currentTrip = mutableMapOf<Int,Trip>()
 
-    var distance: String
-        get() = ""
-        set(value) = TODO()
-
+    var newUser : Boolean = false
 
 }

@@ -20,6 +20,8 @@ class Trip {
     var distance = ""
     @ColumnInfo(name = "cost")
     var cost = ""
+    @ColumnInfo("userId")
+    var userId = ""
 
     constructor()
 

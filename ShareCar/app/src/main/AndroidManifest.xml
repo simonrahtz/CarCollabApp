@@ -13,10 +13,6 @@
             android:exported="false"
             android:label="@string/title_activity_browser_compose"
             android:theme="@style/Theme.ShareCar.NoActionBar" />
-
-        <activity
-            android:name=".presentation.activities.user.ConfirmUserDetailsActivity"
-            android:exported="false" />
         <activity
             android:name=".presentation.activities.user.SignUpActivity"
             android:exported="false" />
@@ -25,11 +21,6 @@
             android:exported="true"
             android:label="@string/title_activity_log_in"
             android:theme="@style/Theme.ShareCar.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.activities.user.UserCarsActivity"
@@ -46,7 +37,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data

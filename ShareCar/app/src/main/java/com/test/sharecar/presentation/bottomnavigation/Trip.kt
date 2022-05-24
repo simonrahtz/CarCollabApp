@@ -1,6 +1,8 @@
 package com.test.sharecar.presentation.bottomnavigation
 
+import android.app.Application
 import android.location.Address
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,11 +25,15 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.CustomGeoCoder
 import com.test.sharecar.components.*
+import com.test.sharecar.data.DataCache
+import com.test.sharecar.data.User
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -35,17 +41,18 @@ import com.test.sharecar.components.*
 fun TripScreen(navController: NavController) {
 
     val context = LocalContext.current
-    val viewModel: TripViewModel = viewModel()
+    val viewModel = TripViewModel(context.applicationContext as Application)
     val dateTime = viewModel.time.observeAsState(String())
+    val currentUser by viewModel.currentUser.observeAsState(User())
     var destination by remember { mutableStateOf("") }
     var geocoderResults = mutableListOf<Address>()
-    var listState: LazyListState = rememberLazyListState()
     var suggestionClicked by remember { mutableStateOf(false) }
+
 
     BackdropScaffold(
         appBar = { },
         backLayerContent = {
-            TitleText(text = "Enter Trip Details", padding = 20, Color.White)
+            TitleText(text = "Hello " + currentUser.name + ", Enter Trip Details", padding = 20, Color.White)
         },
         frontLayerContent = {
             Column(
@@ -71,8 +78,7 @@ fun TripScreen(navController: NavController) {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(50.dp),
-                    state = listState
+                        .height(50.dp)
                 ) {
 
                     //reset list when clicked

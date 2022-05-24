@@ -3,10 +3,10 @@ package com.test.sharecar.presentation.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
-import com.test.sharecar.R
+import androidx.lifecycle.ViewModelProvider
 import com.test.sharecar.databinding.ActivityLogInBinding
-import com.test.sharecar.databinding.ActivityMainBinding
 import com.test.sharecar.presentation.activities.user.SignUpActivity
 
 /**
@@ -24,8 +24,12 @@ class LogInActivity : AppCompatActivity() {
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val viewModel = ViewModelProvider(this).get(LogInViewModel::class.java)
+        val context = applicationContext
+        var userFound: Boolean
         val userName = binding.username
         val logIn = binding.loginButton
+
 
         //disable log in button unless input exists
         logIn.isEnabled = false
@@ -38,9 +42,7 @@ class LogInActivity : AppCompatActivity() {
         logIn.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
             finish()
-
         }
-
 
 
     }
