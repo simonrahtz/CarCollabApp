@@ -7,10 +7,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,9 +27,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.R
 import com.test.sharecar.Screen
+import com.test.sharecar.UserState
 import com.test.sharecar.data.DataCache
 import com.test.sharecar.data.User
 import com.test.sharecar.presentation.bottomnavigation.BottomBarScreen
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -36,97 +40,105 @@ fun UserProfile(navController: NavController) {
     val context = LocalContext.current
     val viewModel = UserProfileViewModel(context.applicationContext as Application)
     val user by viewModel.currentUser.observeAsState(User())
+    val vm = UserState.current
+    val coroutineScope = rememberCoroutineScope()
 
-    val onLogInClick = {navController.navigate(Screen.LogIn.route) {
-        navController.backQueue.clear()
-      }
-
+    val onLogInClick = {
+        coroutineScope.launch {
+            vm.signOut()
+        }
+        Unit
     }
-
 
     Column(
         modifier = Modifier
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color(0, 0, 0, 10))
-        ) {
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Spacer(modifier = Modifier.width(12.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.ic_user_nav),
-                    contentDescription = "avatar",
-                    modifier = Modifier
-                        .height(60.dp)
-                        .width(60.dp)
-                        .clip(shape = RoundedCornerShape(50))
-                )
-                Spacer(modifier = Modifier.width(12.dp))
-                Text(
-                    text = user.name,
-                    color = Color.Black,
-                    fontSize = 26.sp
-                )
+        if (vm.isBusy) {
+            CircularProgressIndicator()
+        } else {
 
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color(0, 0, 0, 10))
+            ) {
+
+                Spacer(modifier = Modifier.height(12.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_user_nav),
+                        contentDescription = "avatar",
+                        modifier = Modifier
+                            .height(60.dp)
+                            .width(60.dp)
+                            .clip(shape = RoundedCornerShape(50))
+                    )
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Text(
+                        text = user.name,
+                        color = Color.Black,
+                        fontSize = 26.sp
+                    )
+
+                }
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Spacer(modifier = Modifier.width(84.dp))
+                    Text(
+                        text = "Log Out",
+                        color = Color(185, 155, 248),
+                        modifier = Modifier.clickable(onClick = onLogInClick)
+                    )
+                    Spacer(modifier = Modifier.width(24.dp))
+                    Text(
+                        text = "Manage Users",
+                        color = Color(185, 155, 248)
+                    )
+                }
+                Spacer(modifier = Modifier.height(24.dp))
             }
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Spacer(modifier = Modifier.width(84.dp))
+            Spacer(modifier = Modifier.height(6.dp))
+            Row(modifier = Modifier.padding(0.dp, 0.dp, 6.dp, 0.dp)) {
                 Text(
-                    text = "Log Out",
-                    color = Color(185, 155, 248),
-                    modifier = Modifier.clickable(onClick = onLogInClick)
+                    text = "Home Address",
+                    color = Color.Black,
+                    fontSize = 18.sp
                 )
-                Spacer(modifier = Modifier.width(24.dp))
-                Text(
-                    text = "Manage Users",
-                    color = Color(185, 155, 248)
-                )
+                Spacer(modifier = Modifier.width(260.dp))
             }
-            Spacer(modifier = Modifier.height(24.dp))
-        }
-        Spacer(modifier = Modifier.height(6.dp))
-        Row(modifier = Modifier.padding(0.dp, 0.dp, 6.dp, 0.dp)) {
-            Text(
-                text = "Home Address",
-                color = Color.Black,
-                fontSize = 18.sp
+            InfoItem(title = "Address", info = user.address)
+            //InfoItem(title = "Suburb", info = "${userAddress.locality}")
+            //InfoItem(title = "Post Code", info = "${userAddress.postalCode}")
+            Spacer(
+                modifier = Modifier
+                    .height(6.dp)
+                    .fillMaxWidth()
+                    .background(Color(0, 0, 0, 10))
             )
-            Spacer(modifier = Modifier.width(260.dp))
-        }
-        InfoItem(title = "Address", info = user.address)
-        //InfoItem(title = "Suburb", info = "${userAddress.locality}")
-        //InfoItem(title = "Post Code", info = "${userAddress.postalCode}")
-        Spacer(
-            modifier = Modifier
-                .height(6.dp)
-                .fillMaxWidth()
-                .background(Color(0, 0, 0, 10))
-        )
-        Row(
-            modifier = Modifier.padding(6.dp, 6.dp, 6.dp, 0.dp)
-        ) {
-            Text(
-                text = "Personal Details",
-                color = Color.Black,
-                fontSize = 18.sp
+            Row(
+                modifier = Modifier.padding(6.dp, 6.dp, 6.dp, 0.dp)
+            ) {
+                Text(
+                    text = "Personal Details",
+                    color = Color.Black,
+                    fontSize = 18.sp
+                )
+                Spacer(modifier = Modifier.width(260.dp))
+            }
+            InfoItem(title = "Email", info = "${user.email}")
+            InfoItem(title = "Phone Number", info = "${user.phoneNo}")
+            Spacer(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(Color(0, 0, 0, 10))
             )
-            Spacer(modifier = Modifier.width(260.dp))
         }
-        InfoItem(title = "Email", info = "${user.email}")
-        InfoItem(title = "Phone Number", info = "${user.phoneNo}")
-        Spacer(
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth()
-                .background(Color(0, 0, 0, 10))
-        )
     }
 }
 

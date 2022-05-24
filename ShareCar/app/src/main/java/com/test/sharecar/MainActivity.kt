@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 
 import com.test.sharecar.presentation.activities.LogInActivity
 import com.test.sharecar.presentation.activities.user.LoginScreen
+import com.test.sharecar.presentation.bottomnavigation.HomeScreen
 import com.test.sharecar.presentation.bottomnavigation.TripScreen
 import com.test.sharecar.ui.theme.ShareCarTheme
 
@@ -37,7 +38,7 @@ class MainActivity : ComponentActivity() {
 fun ApplicationSwitcher() {
     val vm = UserState.current
     if (vm.isLoggedIn) {
-        TripScreen(navController = rememberNavController())
+        HomeScreen()
     } else {
         LoginScreen()
     }

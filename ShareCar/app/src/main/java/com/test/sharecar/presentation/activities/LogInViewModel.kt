@@ -29,6 +29,7 @@ class LogInViewModel(application: Application) : AndroidViewModel(application) {
         var userExists = false
         users.forEach{
             if(it.name == name){
+                DataCache.currentUserId.clear()
                 DataCache.currentUserId.add(it.userId)
                 return true}
         }

@@ -12,16 +12,17 @@ class UserStateViewModel : ViewModel() {
     var isLoggedIn by mutableStateOf(false)
     var isBusy by mutableStateOf(false)
 
-    suspend fun signIn(email: String, password: String) {
+
+    suspend fun signIn() {
         isBusy = true
-        delay(2000)
+        delay(1000)
         isLoggedIn = true
         isBusy = false
     }
 
     suspend fun signOut() {
         isBusy = true
-        delay(2000)
+        delay(1000)
         isLoggedIn = false
         isBusy = false
     }
