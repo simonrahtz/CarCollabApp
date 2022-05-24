@@ -82,7 +82,7 @@ fun LoginScreen() {
             }
 
         }
-       
+
             ClickableText(
                 text = AnnotatedString("Sign up here"),
                 modifier = Modifier
