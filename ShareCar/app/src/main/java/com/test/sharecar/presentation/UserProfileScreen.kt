@@ -1,6 +1,7 @@
 package com.test.sharecar.presentation
 
 
+import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,23 +9,37 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.test.sharecar.CustomGeoCoder
 import com.test.sharecar.R
+import com.test.sharecar.data.User
+import com.test.sharecar.presentation.bottomnavigation.UserViewModel
 
 
 @Composable
 fun UserProfile() {
+    
+    val context = LocalContext.current
+    val viewModel = UserProfileViewModel(context.applicationContext as Application)
+    val user by viewModel.currentUser.observeAsState(User())
+    //var userAddress = CustomGeoCoder(context).getAddress(user.address)
+
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -51,7 +66,7 @@ fun UserProfile() {
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = "Name",
+                    text = user.name,
                     color = Color.Black,
                     fontSize = 26.sp
                 )
@@ -80,9 +95,9 @@ fun UserProfile() {
             )
             Spacer(modifier = Modifier.width(260.dp))
         }
-        InfoItem(title = "Street", info = "66 Marloo Street")
-        InfoItem(title = "Suburb", info = "Rosslyn Pork")
-        InfoItem(title = "Post Code", info = "2784")
+        InfoItem(title = "Address", info = user.address)
+        //InfoItem(title = "Suburb", info = "${userAddress.locality}")
+        //InfoItem(title = "Post Code", info = "${userAddress.postalCode}")
         Spacer(
             modifier = Modifier
                 .height(6.dp)
@@ -99,8 +114,8 @@ fun UserProfile() {
             )
             Spacer(modifier = Modifier.width(260.dp))
         }
-        InfoItem(title = "Email", info = "jennovoross@gltrrf.com")
-        InfoItem(title = "Phone Number", info = "0473 032 934")
+        InfoItem(title = "Email", info = "${user.email}")
+        InfoItem(title = "Phone Number", info = "${user.phoneNo}")
         Spacer(
             modifier = Modifier
                 .fillMaxHeight()
