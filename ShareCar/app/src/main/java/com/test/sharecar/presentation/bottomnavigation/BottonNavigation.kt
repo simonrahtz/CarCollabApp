@@ -27,14 +27,14 @@ class BrowserComposeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ShareCarTheme {
-                MainScreen()
+                HomeScreen()
             }
         }
     }
 }
 
 @Composable
-fun MainScreen() {
+fun HomeScreen() {
 
     val navController = rememberNavController()
     Scaffold(
