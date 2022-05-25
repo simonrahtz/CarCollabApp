@@ -26,9 +26,6 @@ fun CustomTextField(
         value = textState,
         onValueChange = { onTextChange(it) },
         singleLine = true,
-        leadingIcon = {
-            Icon(imageVector = Icons.Default.Search, contentDescription = "search")
-        },
         trailingIcon = {
             IconButton(onClick = onClickCancel) {
                 Icon(imageVector = Icons.Default.Cancel, contentDescription = "cancel")

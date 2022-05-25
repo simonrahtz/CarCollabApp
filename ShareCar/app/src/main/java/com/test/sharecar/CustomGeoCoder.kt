@@ -37,7 +37,7 @@ class CustomGeoCoder(context: Context) {
             addressStrings.add("error")
         } else {
             addresses.forEach() {
-                result = it.getAddressLine(0).replace("Australia"," ")
+                result = it.getAddressLine(0).replace(", Australia"," ")
                 addressStrings.add(result)
                     //.add("${it.subThoroughfare} ${it.thoroughfare} ${it.adminArea} ${it.locality} ${it.postalCode}")
             }

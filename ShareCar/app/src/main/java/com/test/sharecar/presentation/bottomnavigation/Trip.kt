@@ -73,7 +73,11 @@ fun TripScreen(navController: NavController) {
                         .height(50.dp)
                 ) {
                     //reset list when clicked
-                    if (suggestionClicked) geocoderResults.clear()
+                    if (suggestionClicked) {
+                        geocoderResults.clear()
+                        addressSuggestion = ""
+                        suggestionClicked = false
+                    }
                     items(geocoderResults) { address ->
                         if (address != "error") {
                             addressSuggestion = address
