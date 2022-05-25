@@ -17,7 +17,7 @@ class TripViewModel(application: Application) : AndroidViewModel(application) {
     private val _time = MutableLiveData("")
     private val fuelPrice = 176.70f //cents
     var time: LiveData<String> = _time
-    var currentUser: LiveData<User>
+    //var currentUser: LiveData<User>
 
 
     init {
@@ -26,7 +26,7 @@ class TripViewModel(application: Application) : AndroidViewModel(application) {
         val tripDao = db.tripDao()
         repository = ShareCarRepository(userDao, tripDao)
 
-        currentUser =  repository.getCurrentUser()
+        //currentUser =  repository.getCurrentUser()
     }
 
     fun selectDateTime(context: Context) {

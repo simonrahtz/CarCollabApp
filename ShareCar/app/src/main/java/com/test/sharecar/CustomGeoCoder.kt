@@ -4,6 +4,7 @@ import android.content.Context
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
+import androidx.compose.runtime.mutableStateOf
 import com.google.android.gms.maps.model.LatLng
 import java.util.*
 import kotlin.math.roundToInt
@@ -12,7 +13,7 @@ class CustomGeoCoder(context: Context) {
     val context = context
 
     fun getLatLng(address: String): LatLng {
-        var geocoder = Geocoder(context,Locale.getDefault()).getFromLocationName(
+        var geocoder = Geocoder(context, Locale.getDefault()).getFromLocationName(
             address, 1
         )
         return LatLng(geocoder[0].latitude, geocoder[0].longitude)
@@ -26,12 +27,22 @@ class CustomGeoCoder(context: Context) {
         return addresses[0]
     }
 
-    fun getAddressFromString(address: String): List<Address>{
-
-        return Geocoder(context, Locale.getDefault()).getFromLocationName(
-            address, 100
+    fun getAddressStrings(address: String): List<String> {
+        var result = ""
+        var addressStrings = mutableListOf<String>()
+        val addresses = Geocoder(context, Locale.getDefault()).getFromLocationName(
+            address, Int.MAX_VALUE
         )
-
+        if (addresses.none { it.countryName == "Australia" }) {
+            addressStrings.add("error")
+        } else {
+            addresses.forEach() {
+                result = it.getAddressLine(0).replace("Australia"," ")
+                addressStrings.add(result)
+                    //.add("${it.subThoroughfare} ${it.thoroughfare} ${it.adminArea} ${it.locality} ${it.postalCode}")
+            }
+        }
+        return addressStrings
     }
 
     fun getDistance(startAddress: String, endAddress: String): Float {
@@ -46,8 +57,8 @@ class CustomGeoCoder(context: Context) {
             longitude = end.longitude
         }
 
-        var distance =  startLocation.distanceTo(endLocation)
-        distance = (distance/1000)
+        var distance = startLocation.distanceTo(endLocation)
+        distance = (distance / 1000)
 
         return distance
 
