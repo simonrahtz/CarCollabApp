@@ -1,16 +1,13 @@
 package com.test.sharecar.presentation.bottomnavigation
 
 import android.app.Application
-import android.location.Address
-import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
@@ -25,15 +22,11 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.CustomGeoCoder
+import com.test.sharecar.Screen
 import com.test.sharecar.components.*
-import com.test.sharecar.data.DataCache
-import com.test.sharecar.data.User
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -43,16 +36,15 @@ fun TripScreen(navController: NavController) {
     val context = LocalContext.current
     val viewModel = TripViewModel(context.applicationContext as Application)
     val dateTime = viewModel.time.observeAsState(String())
-    val currentUser by viewModel.currentUser.observeAsState(User())
     var destination by remember { mutableStateOf("") }
-    var geocoderResults = mutableListOf<Address>()
+    var geocoderResults = mutableListOf<String>()
     var suggestionClicked by remember { mutableStateOf(false) }
-
+    var addressSuggestion by remember { mutableStateOf("") }
 
     BackdropScaffold(
         appBar = { },
         backLayerContent = {
-            TitleText(text = "Hello " + currentUser.name + ", Enter Trip Details", padding = 20, Color.White)
+            TitleText(text = "Enter Trip Details", padding = 20, Color.White)
         },
         frontLayerContent = {
             Column(
@@ -63,41 +55,39 @@ fun TripScreen(navController: NavController) {
                 Text(text = "Enter Destination")
                 CustomTextField(title = "Type Address",
                     textState = destination,
-                    onTextChange = { destination = it },
+                    onTextChange = {
+                        destination = it
+                    },
                     onClickCancel = {
-                        suggestionClicked = false
+                        suggestionClicked = true
                         destination = ""
                     })
-
                 // Start Search for addresses when the input string is more than 10 characters
                 if (destination.length > 10) {
                     geocoderResults =
-                        CustomGeoCoder(context).getAddressFromString(destination).toMutableList()
+                        CustomGeoCoder(context).getAddressStrings(destination).toMutableList()
                 }
-
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(50.dp)
                 ) {
-
                     //reset list when clicked
                     if (suggestionClicked) geocoderResults.clear()
                     items(geocoderResults) { address ->
-
-                        // Custom Address String - street number, street name and suburb
-                        var suggestion =
-                            address.subThoroughfare + " " + address.thoroughfare + " " + address.locality
+                        if (address != "error") {
+                            addressSuggestion = address
+                        }
                         Box(
                             modifier = Modifier
                                 .padding(10.dp)
                                 .clickable(onClick = {
-                                    destination = suggestion
                                     suggestionClicked = true
+                                    destination = addressSuggestion
 
                                 })
                         ) {
-                            Text(text = suggestion)
+                            Text(text = addressSuggestion)
                         }
                     }
                 }
@@ -126,8 +116,7 @@ fun TripScreen(navController: NavController) {
                         .height(50.dp),
                     onClick = {
                         viewModel.storeTrip(destination, dateTime.value, context)
-                        //navController.navigate(Screen.ConfirmTrip.route)
-
+                        navController.navigate(Screen.ConfirmTrip.route)
                     }
                 ) {
                     Text(text = "Confirm", color = Color.White)
@@ -193,6 +182,7 @@ fun DropDownMenu() {
 @Composable
 fun EnterTripDetailsPreview() {
     TripScreen(navController = rememberNavController())
+    //DropDownMenu()
 }
 
 
