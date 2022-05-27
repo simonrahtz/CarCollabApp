@@ -11,8 +11,10 @@ import com.test.sharecar.data.User
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
+
     private val repository: ShareCarRepository
     var currentUser: LiveData<User>
+    val allTrips: LiveData<List<Trip>>
 
 
     init {
@@ -22,6 +24,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         repository = ShareCarRepository(userDao, tripDao)
 
         currentUser =  repository.getCurrentUser()
+        allTrips = repository.readAllTrips
     }
 
 

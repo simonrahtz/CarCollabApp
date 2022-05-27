@@ -71,7 +71,13 @@ fun DetailBox() {
             fontSize = 24.sp
         )
         Row(modifier = Modifier.height(30.dp), verticalAlignment = Alignment.CenterVertically) {
-            Icon(imageVector = Icons.Filled.PinDrop, contentDescription = "cancel")
+            Image(
+                painter = painterResource(id = R.drawable.ic_location),
+                contentDescription = "location",
+                modifier = Modifier
+                    .width(20.dp)
+                    .height(26.dp)
+            )
             Spacer(modifier = Modifier.width(6.dp))
             Column {
                 Text(text = "17 Brooker Street St Marys", color = Color.DarkGray)

@@ -1,30 +1,28 @@
 package com.test.sharecar.presentation.bottomnavigation
 
-import android.app.Activity
 import android.app.Application
-import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -33,9 +31,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.R
 import com.test.sharecar.Screen
-import com.test.sharecar.data.DataCache
+import com.test.sharecar.components.TitleText
+import com.test.sharecar.data.Trip
 import com.test.sharecar.data.User
 import com.test.sharecar.presentation.HorizontalDivider
+import com.test.sharecar.presentation.InfoItem
 
 @Composable
 fun UserScreen(navController: NavController) {
@@ -43,6 +43,7 @@ fun UserScreen(navController: NavController) {
     val context = LocalContext.current
     val viewModel = UserViewModel(context.applicationContext as Application)
     val user by viewModel.currentUser.observeAsState(User())
+    val trips by viewModel.allTrips.observeAsState(listOf())
 
 
     Column(
@@ -52,14 +53,16 @@ fun UserScreen(navController: NavController) {
 
         ) {
 
-        TopBar(navController,user)
+        TopBar(navController, user)
         Spacer(modifier = Modifier.height(36.dp))
-        TripInfo()
+        TripInfo(trips)
     }
 }
 
 @Composable
-fun TripInfo() {
+fun TripInfo(trips: List<Trip>) {
+
+    var onDeleteClick = {}
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -78,11 +81,30 @@ fun TripInfo() {
         Spacer(modifier = Modifier.height(12.dp))
         HorizontalDivider()
         Spacer(modifier = Modifier.height(16.dp))
-        TripItem(title = "8 Parkwood Street", date = "04.03.22", distance = "4.1kms")
-        Spacer(modifier = Modifier.height(12.dp))
-        TripItem(title = "8 Parkwood Street", date = "04.03.22", distance = "4.1kms")
-        Spacer(modifier = Modifier.height(12.dp))
-        TripItem(title = "8 Parkwood Street", date = "04.03.22", distance = "4.1kms")
+
+        if (trips.isEmpty()) {
+            Text(
+                text = "No trips booked",
+                modifier = Modifier.padding(20.dp),
+                fontSize = 30.sp
+            )
+        }
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(15.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        )
+        {
+            items(trips) { trip ->
+                TripItem(
+                    title = trip.destination,
+                    date = trip.date,
+                    distance = "${trip.distance} kms",
+                    onDeleteClick = onDeleteClick
+                )
+            }
+        }
     }
 }
 
@@ -103,7 +125,8 @@ fun TopBar(navController: NavController, user: User) {
         ) {
             Spacer(modifier = Modifier.width(24.dp))
             Image(
-                painter = painterResource(id = R.drawable.ic_user_trip), contentDescription = "",
+                painter = painterResource(id = R.drawable.ic_user_trip),
+                contentDescription = "user",
                 modifier = Modifier
                     .width(24.dp)
                     .height(24.dp)
@@ -121,43 +144,36 @@ fun TopBar(navController: NavController, user: User) {
 }
 
 @Composable
-fun TripItem(title: String, date: String, distance: String) {
+fun TripItem(title: String, date: String, distance: String, onDeleteClick: () -> Unit) {
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(80.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .background(Color.LightGray)
+            .padding(20.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Spacer(modifier = Modifier.weight(0.05f))
-        Row(
-            modifier = Modifier
-                .weight(0.9f)
-                .height(80.dp)
-                .clip(RoundedCornerShape(8.dp, 8.dp, 8.dp, 8.dp))
-                .background(
-                    Color(0, 0, 0, 20)
-                )
-                .padding(8.dp, 8.dp, 8.dp, 8.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    text = title,
-                    color = Color.Black,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(text = date, color = Color.DarkGray, fontSize = 16.sp)
-                Text(text = distance, color = Color.DarkGray, fontSize = 16.sp)
-            }
+        Column() {
+            Text(
+                text = title,
+                color = Color.Black,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Text(text = date, color = Color.DarkGray, fontSize = 16.sp)
+            Text(text = distance, color = Color.DarkGray, fontSize = 16.sp)
         }
-        Spacer(modifier = Modifier.weight(0.05f))
+        IconButton(onClick = onDeleteClick) {
+            Icon(imageVector = Icons.Default.Delete, contentDescription = "delete_trip")
+        }
 
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun UserScreenPreview() {
-    UserScreen(navController = rememberNavController())
 
 }
