@@ -67,7 +67,7 @@ fun BackdropLayer(
     val date = viewModel.time.observeAsState(String())
     var destination by remember { mutableStateOf("") }
     var geocoderResults = mutableListOf<String>()
-    var suggestionClicked by remember { mutableStateOf(false) }
+    var listVisible by remember { mutableStateOf(false) }
     var addressSuggestion by remember { mutableStateOf("") }
 
     Column(
@@ -80,42 +80,40 @@ fun BackdropLayer(
         CustomTextField(title = "Type Address",
             textState = destination,
             onTextChange = {
+                listVisible = true
                 destination = it
             },
             onClickCancel = {
-                suggestionClicked = true
+                listVisible = false
                 destination = ""
             })
         // Start Search for addresses when the input string is more than 10 characters
-        if (destination.length > 10) {
+        if (destination.length > 6) {
             geocoderResults =
                 CustomGeoCoder(context).getAddressStrings(destination).toMutableList()
         }
+
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp)
+                .height(70.dp)
         ) {
-            //reset list when clicked
-            if (suggestionClicked) {
-                geocoderResults.clear()
-                addressSuggestion = ""
-                suggestionClicked = false
-            }
-            items(geocoderResults) { address ->
-                if (address != "error") {
-                    addressSuggestion = address
-                }
-                Box(
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .clickable(onClick = {
-                            suggestionClicked = true
-                            destination = addressSuggestion
-
-                        })
-                ) {
-                    Text(text = addressSuggestion)
+            if (listVisible) {
+                //reset list when clicked
+                items(geocoderResults) { address ->
+                    if (address != "error") {
+                        addressSuggestion = address
+                    }
+                    Box(
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .clickable(onClick = {
+                                listVisible = false
+                                destination = addressSuggestion
+                            })
+                    ) {
+                        Text(text = addressSuggestion)
+                    }
                 }
             }
         }
@@ -133,16 +131,30 @@ fun BackdropLayer(
             buttonTitle = "Select time",
             image = Icons.Filled.Schedule
         )
+        Spacer(modifier = Modifier.padding(20.dp))
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+            onClick = {
+                viewModel.storeTrip(destination, date.value, context)
+                navController.navigate(Screen.ConfirmTrip.route)
+            }
+        ) {
+            Text(text = "Next", color = Color.White)
+        }
+
     }
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(20.dp),
         verticalArrangement = Arrangement.Bottom
     ) {
         Button(
             modifier = Modifier
                 .fillMaxWidth()
+                .background(Color.Magenta)
                 .height(50.dp),
             onClick = {
                 viewModel.storeTrip(destination, date.value, context)
@@ -170,12 +182,12 @@ fun TripBookRow(
         Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        Icon(imageVector = image, contentDescription = buttonTitle)
         DefaultButton(
             text = buttonTitle,
             onClick = onSelectClick
         )
         Spacer(modifier = Modifier.padding(30.dp))
-        Icon(imageVector = image, contentDescription = buttonTitle)
         BoldText(text = selection)
     }
 }
@@ -245,7 +257,7 @@ fun DropDownMenu(scope: CoroutineScope, backdropState: BackdropScaffoldState) {
                         expanded = false
                     }
                 }) {
-                    menuItemText = if (timeLabel == bookedTime) {
+                    var menuItemText = if (timeLabel == bookedTime) {
                         Text(text = timeLabel, color = Color.LightGray)
                     } else Text(text = timeLabel)
 
