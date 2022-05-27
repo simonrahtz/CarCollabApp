@@ -23,8 +23,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.R
+import com.test.sharecar.components.CloseIcon
+import com.test.sharecar.components.TitleText
 import com.test.sharecar.data.Car
 import com.test.sharecar.data.Trip
+import com.test.sharecar.presentation.bottomnavigation.BottomBarScreen
 
 
 @Composable
@@ -34,18 +37,27 @@ fun ConfirmTripDetails(navController: NavController) {
     val viewModel =
         ConfirmTripViewModel(context.applicationContext as Application)
     val latestTripEntry by viewModel.latestTrip.observeAsState(Trip())
+
+    val onCloseClick = {viewModel.deleteTrip(latestTripEntry)
+        navController.popBackStack()
+    }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
             .background(Color(81, 81, 223, 255))
     ) {
-        Spacer(
-            modifier = Modifier
-                .height(100.dp)
-                .fillMaxWidth()
-        )
-        MainContent(context, viewModel, latestTripEntry,navController)
+        Row(modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically) {
+            TitleText(text = "Trip estimation", padding = 20, color = Color.White)
+            CloseIcon(onIconClick = {viewModel.deleteTrip(latestTripEntry)
+                navController.popBackStack()
+            },Color.White)
+
+        }
+        MainContent(context, viewModel, latestTripEntry, navController)
     }
 }
 
@@ -67,7 +79,6 @@ fun MainContent(
             .fillMaxWidth()
             .clip(RoundedCornerShape(24.dp, 24.dp, 0.dp, 0.dp))
             .fillMaxHeight()
-
             .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -83,37 +94,40 @@ fun MainContent(
                 .height(24.dp)
         )
         HorizontalDivider()
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         ImageItem(title = "DESTINATION", content = trip.destination, R.drawable.ic_location_trip)
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         ImageItem(title = "DATE", content = trip.date, R.drawable.ic_date_trip)
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         ImageItem(title = "CAR", content = Car().name + " " + Car().make, R.drawable.ic_car_trip)
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         TextItem(
             title = "Distance",
-            content = trip.distance + "km"
+            content = "${trip.distance} km"
         )
         HorizontalDivider()
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         TextItem(title = "Petrol Price", content = "$1.67")
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         TextBoldItem(title = "TOTAL", content = "$" + trip.cost)
-        Spacer(modifier = Modifier.height(12.dp))
-        ButtonItem(onButtonClick = {
+        Spacer(modifier = Modifier.height(10.dp))
+        ButtonItem("Book", onButtonClick = {
             navController.popBackStack()
         })
+
+
     }
 }
 
 @Composable
 fun ButtonItem(
+    text: String,
     onButtonClick: () -> Unit
 ) {
     Row(modifier = Modifier.fillMaxWidth()) {
         Spacer(modifier = Modifier.weight(0.05f))
         Button(
-            content = { Text(text = "Confirm") },
+            content = { Text(text = text) },
             onClick = onButtonClick,
             modifier = Modifier
                 .weight(0.9f)

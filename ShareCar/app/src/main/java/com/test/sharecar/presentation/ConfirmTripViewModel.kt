@@ -3,9 +3,12 @@ package com.test.sharecar.presentation
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.test.sharecar.data.ShareCarDatabase
 import com.test.sharecar.data.Trip
 import com.test.sharecar.data.ShareCarRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ConfirmTripViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -21,6 +24,12 @@ class ConfirmTripViewModel(application: Application) : AndroidViewModel(applicat
         repository = ShareCarRepository(userDao,tripDao)
         allTrips = repository.readAllTrips
         latestTrip = repository.latestTrip
+    }
+
+    fun deleteTrip(trip: Trip) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteTrip(trip)
+        }
     }
 
 
