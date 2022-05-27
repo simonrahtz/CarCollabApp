@@ -35,8 +35,6 @@ class TripViewModel(application: Application) : AndroidViewModel(application) {
         val startYear = currentDateTime.get(Calendar.YEAR)
         val startMonth = currentDateTime.get(Calendar.MONTH)
         val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
-        val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
-        val startMinute = currentDateTime.get(Calendar.MINUTE)
 
         DatePickerDialog(context, { _, year, month, day ->
             val pickedDateTime = Calendar.getInstance()
