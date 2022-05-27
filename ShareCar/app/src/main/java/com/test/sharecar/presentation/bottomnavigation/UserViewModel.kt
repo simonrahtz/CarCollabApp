@@ -4,10 +4,13 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.test.sharecar.data.ShareCarDatabase
 import com.test.sharecar.data.ShareCarRepository
 import com.test.sharecar.data.Trip
 import com.test.sharecar.data.User
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -25,6 +28,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
         currentUser =  repository.getCurrentUser()
         allTrips = repository.readAllTrips
+    }
+
+    fun deleteTrip(trip: Trip) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteTrip(trip)
+        }
     }
 
 

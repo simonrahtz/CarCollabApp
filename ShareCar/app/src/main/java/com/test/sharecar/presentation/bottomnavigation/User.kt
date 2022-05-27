@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.R
@@ -55,14 +56,14 @@ fun UserScreen(navController: NavController) {
 
         TopBar(navController, user)
         Spacer(modifier = Modifier.height(36.dp))
-        TripInfo(trips)
+        TripInfo(trips,viewModel)
     }
 }
 
 @Composable
-fun TripInfo(trips: List<Trip>) {
+fun TripInfo(trips: List<Trip>,viewModel: UserViewModel) {
 
-    var onDeleteClick = {}
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -98,10 +99,8 @@ fun TripInfo(trips: List<Trip>) {
         {
             items(trips) { trip ->
                 TripItem(
-                    title = trip.destination,
-                    date = trip.date,
-                    distance = "${trip.distance} kms",
-                    onDeleteClick = onDeleteClick
+                    trip = trip,
+                    viewModel = viewModel()
                 )
             }
         }
@@ -144,8 +143,7 @@ fun TopBar(navController: NavController, user: User) {
 }
 
 @Composable
-fun TripItem(title: String, date: String, distance: String, onDeleteClick: () -> Unit) {
-
+fun TripItem(trip: Trip,viewModel: UserViewModel) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -155,19 +153,26 @@ fun TripItem(title: String, date: String, distance: String, onDeleteClick: () ->
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Column() {
+        Column(modifier = Modifier.weight(
+            0.8f)) {
             Text(
-                text = title,
+                text = trip.destination,
                 color = Color.Black,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
             )
-            Text(text = date, color = Color.DarkGray, fontSize = 16.sp)
-            Text(text = distance, color = Color.DarkGray, fontSize = 16.sp)
+            Text(text = trip.date, color = Color.DarkGray, fontSize = 16.sp)
+            Text(text = "${trip.distance} kms", color = Color.DarkGray, fontSize = 16.sp)
         }
-        IconButton(onClick = onDeleteClick) {
-            Icon(imageVector = Icons.Default.Delete, contentDescription = "delete_trip")
+        Column(modifier = Modifier.weight(
+            0.2f)) {
+            IconButton(onClick = {
+                viewModel.deleteTrip(trip)
+            }) {
+                Icon(imageVector = Icons.Default.Delete, contentDescription = "delete_trip")
+            }
         }
+
 
     }
 }

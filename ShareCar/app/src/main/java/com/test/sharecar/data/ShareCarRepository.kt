@@ -20,6 +20,9 @@ class ShareCarRepository(private val userDao: UserDao, private val tripDao: Trip
     suspend fun addTrip(trip: Trip) {
         tripDao.addTrip(trip)
     }
+    suspend fun deleteTrip(trip: Trip){
+        tripDao.deleteTrip(trip)
+    }
 
     fun getCurrentUser(): MutableLiveData<User> {
         if (DataCache.newUser) {
