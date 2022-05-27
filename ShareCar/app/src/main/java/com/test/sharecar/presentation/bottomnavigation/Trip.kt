@@ -95,7 +95,7 @@ fun TripScreen(navController: NavController) {
                         }
                     }
                 }
-                LightGreyDivider(padding = 20)
+                LightGreyDivider()
                 Text(text = "Book a date")
                 Row(
                     Modifier.fillMaxWidth(),
@@ -106,7 +106,7 @@ fun TripScreen(navController: NavController) {
                     Spacer(modifier = Modifier.padding(30.dp))
                     BoldText(text = "Date: " + dateTime.value)
                 }
-                LightGreyDivider(padding = 50)
+                LightGreyDivider()
             }
             Column(
                 modifier = Modifier

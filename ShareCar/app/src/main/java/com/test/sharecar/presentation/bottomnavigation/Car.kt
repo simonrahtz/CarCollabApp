@@ -5,7 +5,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
@@ -34,13 +37,7 @@ fun CarScreen() {
             .fillMaxSize()
             .background(Color(137, 86, 239))
     ) {
-        Text(
-            text = "View Car",
-            color = Color.White,
-            fontWeight = FontWeight.Bold,
-            fontSize = 32.sp,
-            modifier = Modifier.padding(21.dp, 21.dp)
-        )
+        TitleText(text = "View Car", padding = 21, color = Color.White)
         MainCarBox()
     }
 }
@@ -50,10 +47,10 @@ fun MainCarBox() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .clip(RoundedCornerShape(24.dp, 24.dp, 0.dp, 0.dp))
+            .clip(RoundedCornerShape(15.dp, 15.dp, 0.dp, 0.dp))
             .background(Color.White)
     ) {
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(15.dp))
         DisplayBox()
         DetailBox()
     }
@@ -74,13 +71,7 @@ fun DetailBox() {
             fontSize = 24.sp
         )
         Row(modifier = Modifier.height(30.dp), verticalAlignment = Alignment.CenterVertically) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_location),
-                contentDescription = "location",
-                modifier = Modifier
-                    .width(24.dp)
-                    .height(24.dp)
-            )
+            Icon(imageVector = Icons.Filled.PinDrop, contentDescription = "cancel")
             Spacer(modifier = Modifier.width(6.dp))
             Column {
                 Text(text = "17 Brooker Street St Marys", color = Color.DarkGray)
@@ -109,18 +100,16 @@ fun DetailBox() {
         )
         Spacer(modifier = Modifier.height(12.dp))
         Row(modifier = Modifier.height(30.dp), verticalAlignment = Alignment.CenterVertically) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_dollar),
-                contentDescription = "rate",
-                modifier = Modifier
-                    .width(24.dp)
-                    .height(24.dp)
-            )
+            Icon(imageVector = Icons.Filled.AttachMoney, contentDescription = "dollar_sign")
             Spacer(modifier = Modifier.width(6.dp))
             Row {
                 Text(text = "Rate:", color = Color.Gray)
                 Spacer(modifier = Modifier.width(6.dp))
-                Text(text = "$5.50 per hour + fuel", color = Color.DarkGray, fontWeight = FontWeight.Bold)
+                Text(
+                    text = "$5.50 per hour + fuel",
+                    color = Color.DarkGray,
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
     }
@@ -174,12 +163,14 @@ fun DisplayBox() {
         modifier = Modifier
             .fillMaxWidth()
             .height(185.dp)
-            .clip(RoundedCornerShape(8.dp, 8.dp, 8.dp, 8.dp))
-            .background(Color.DarkGray)
+            .clip(RoundedCornerShape(8.dp))
+            .background(Color.DarkGray),
+        horizontalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.weight(0.1f))
-        Image(painter = painterResource(id = R.drawable.car_display), contentDescription = "car")
-        Spacer(modifier = Modifier.weight(0.1f))
+        Image(
+            painter = painterResource(id = R.drawable.car_display),
+            contentDescription = "car"
+        )
     }
 }
 

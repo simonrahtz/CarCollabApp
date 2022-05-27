@@ -8,9 +8,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun LightGreyDivider(padding: Int) {
+fun LightGreyDivider() {
     Divider(
-        modifier = Modifier.padding(vertical = padding.dp),
+        modifier = Modifier.padding(vertical = 20.dp),
         color = Color.LightGray
     )
 }

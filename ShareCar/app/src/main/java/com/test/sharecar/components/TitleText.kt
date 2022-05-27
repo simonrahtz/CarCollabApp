@@ -6,6 +6,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -14,7 +15,9 @@ fun TitleText(text: String, padding: Int, color: Color) {
         text = text,
         style = MaterialTheme.typography.h4,
         modifier = Modifier.padding(padding.dp),
-        color = color
+        color = color,
+        fontWeight = FontWeight.Bold
+
     )
 
 }
