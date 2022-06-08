@@ -23,14 +23,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.R
-import com.test.sharecar.Screen
 import com.test.sharecar.UserState
-import com.test.sharecar.data.DataCache
+import com.test.sharecar.components.CloseIcon
 import com.test.sharecar.data.User
-import com.test.sharecar.presentation.bottomnavigation.BottomBarScreen
 import kotlinx.coroutines.launch
 
 
@@ -85,6 +82,7 @@ fun UserProfile(navController: NavController) {
                         color = Color.Black,
                         fontSize = 26.sp
                     )
+                    CloseIcon(onIconClick = {navController.popBackStack()},Color.Black)
 
                 }
                 Row(modifier = Modifier.fillMaxWidth()) {
@@ -130,8 +128,8 @@ fun UserProfile(navController: NavController) {
                 )
                 Spacer(modifier = Modifier.width(260.dp))
             }
-            InfoItem(title = "Email", info = "${user.email}")
-            InfoItem(title = "Phone Number", info = "${user.phoneNo}")
+            InfoItem(title = "Email", info = user.email)
+            InfoItem(title = "Phone Number", info = user.phoneNo)
             Spacer(
                 modifier = Modifier
                     .fillMaxHeight()

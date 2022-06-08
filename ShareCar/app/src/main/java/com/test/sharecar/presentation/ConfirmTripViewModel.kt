@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class ConfirmTripViewModel(application: Application) : AndroidViewModel(application) {
 
-    val allTrips: LiveData<List<Trip>>
+    private val allTrips: LiveData<List<Trip>>
     val latestTrip: LiveData<Trip>
     private val repository: ShareCarRepository
 

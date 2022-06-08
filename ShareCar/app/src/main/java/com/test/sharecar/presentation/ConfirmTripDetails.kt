@@ -8,7 +8,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,15 +28,14 @@ import com.test.sharecar.components.CloseIcon
 import com.test.sharecar.components.TitleText
 import com.test.sharecar.data.Car
 import com.test.sharecar.data.Trip
-import com.test.sharecar.presentation.bottomnavigation.BottomBarScreen
 
 
 @Composable
 fun ConfirmTripDetails(navController: NavController) {
 
-    val context = LocalContext.current
+    val context = LocalContext.current.applicationContext
     val viewModel =
-        ConfirmTripViewModel(context.applicationContext as Application)
+        ConfirmTripViewModel(context as Application)
     val latestTripEntry by viewModel.latestTrip.observeAsState(Trip())
 
     val onCloseClick = {viewModel.deleteTrip(latestTripEntry)
@@ -69,8 +69,6 @@ fun MainContent(
     navController: NavController
 ) {
 
-    val context = context
-    val viewModel = viewModel
     val trip = trip
 
 
