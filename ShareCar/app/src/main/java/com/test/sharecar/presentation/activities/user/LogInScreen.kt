@@ -3,6 +3,7 @@ package com.test.sharecar.presentation.activities.user
 import android.app.Application
 import android.content.Intent
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
@@ -16,6 +17,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
@@ -25,6 +27,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.test.sharecar.R
 import com.test.sharecar.UserState
 import com.test.sharecar.data.DataCache
 import com.test.sharecar.data.User
@@ -55,6 +58,16 @@ fun LoginScreen() {
             CircularProgressIndicator()
         } else {
             val password = remember { mutableStateOf(TextFieldValue()) }
+
+            Image(
+                painter = painterResource(id = R.drawable.car_collab_banner),
+                contentDescription = "location",
+                modifier = Modifier.padding(top = 20.dp)
+
+            )
+
+            Spacer(modifier = Modifier.height(100.dp))
+
 
             Text(text = "Login", style = TextStyle(fontSize = 40.sp))
 

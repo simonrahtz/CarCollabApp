@@ -1,6 +1,5 @@
 package com.test.sharecar.presentation.bottomnavigation
 
-
 import android.app.Application
 import android.app.DatePickerDialog
 import android.content.Context
@@ -16,7 +15,7 @@ class TripViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: ShareCarRepository
     private val _time = MutableLiveData("")
     private val fuelPrice = 176.70f //cents
-    var time: LiveData<String> = _time
+    var date: LiveData<String> = _time
     //var currentUser: LiveData<User>
 
 

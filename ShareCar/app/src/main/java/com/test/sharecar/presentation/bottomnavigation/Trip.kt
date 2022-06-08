@@ -64,7 +64,7 @@ fun BackdropLayer(
     context: Context
 ) {
     val scope = rememberCoroutineScope()
-    val date = viewModel.time.observeAsState(String())
+    val date = viewModel.date.observeAsState(String())
     var destination by remember { mutableStateOf("") }
     var geocoderResults = mutableListOf<String>()
     var listVisible by remember { mutableStateOf(false) }

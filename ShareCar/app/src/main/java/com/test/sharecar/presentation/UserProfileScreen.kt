@@ -180,7 +180,7 @@ fun InfoItem(title: String, info: String) {
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true)
 fun UserProfilePreview() {
     UserProfile(navController = rememberNavController())
 }
