@@ -1,4 +1,4 @@
-package com.test.sharecar
+package com.test.sharecar.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
