@@ -115,7 +115,7 @@ fun BottomNavigation(navController: NavHostController) {
         composable(Screen.UserProfile.route) {
             UserProfile(navController = navController)
         }
-        composable(Screen.LogIn.route){
+        composable(Screen.LogIn.route) {
             LoginScreen()
         }
     }
