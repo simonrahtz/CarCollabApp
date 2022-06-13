@@ -33,7 +33,6 @@ import com.test.sharecar.data.DataCache
 import com.test.sharecar.data.User
 import com.test.sharecar.presentation.activities.BrowserActivity
 import com.test.sharecar.presentation.activities.LogInViewModel
-import com.test.sharecar.presentation.bottomnavigation.BrowserComposeActivity
 import com.test.sharecar.ui.theme.Purple700
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
