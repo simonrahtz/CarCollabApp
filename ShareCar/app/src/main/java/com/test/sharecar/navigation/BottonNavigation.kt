@@ -1,4 +1,4 @@
-package com.test.sharecar.presentation.bottomnavigation
+package com.test.sharecar.navigation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -16,11 +16,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.test.sharecar.Screen
 import com.test.sharecar.presentation.ConfirmTripDetails
 import com.test.sharecar.presentation.MapScreen
 import com.test.sharecar.presentation.UserProfile
 import com.test.sharecar.presentation.activities.user.LoginScreen
+import com.test.sharecar.presentation.bottomnavigation.CarScreen
+import com.test.sharecar.presentation.bottomnavigation.TripScreen
+import com.test.sharecar.presentation.bottomnavigation.UserScreen
 
 class BrowserComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

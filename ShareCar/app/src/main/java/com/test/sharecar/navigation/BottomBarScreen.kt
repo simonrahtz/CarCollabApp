@@ -1,4 +1,4 @@
-package com.test.sharecar.presentation.bottomnavigation
+package com.test.sharecar.navigation
 
 import com.test.sharecar.R
 
