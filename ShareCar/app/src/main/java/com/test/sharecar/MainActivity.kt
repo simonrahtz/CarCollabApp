@@ -10,10 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.test.sharecar.navigation.HomeScreen
+import com.test.sharecar.navigation.Navigation
 
 import com.test.sharecar.presentation.activities.LogInActivity
 import com.test.sharecar.presentation.activities.user.LoginScreen
-import com.test.sharecar.presentation.bottomnavigation.HomeScreen
 import com.test.sharecar.presentation.bottomnavigation.TripScreen
 import com.test.sharecar.ui.theme.ShareCarTheme
 
@@ -40,7 +41,7 @@ fun ApplicationSwitcher() {
     if (vm.isLoggedIn) {
         HomeScreen()
     } else {
-        LoginScreen()
+        Navigation()
     }
 }
 

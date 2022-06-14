@@ -1,4 +1,4 @@
-package com.test.sharecar.presentation.bottomnavigation
+package com.test.sharecar.navigation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -16,11 +16,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.test.sharecar.Screen
 import com.test.sharecar.presentation.ConfirmTripDetails
 import com.test.sharecar.presentation.MapScreen
 import com.test.sharecar.presentation.UserProfile
 import com.test.sharecar.presentation.activities.user.LoginScreen
+import com.test.sharecar.presentation.bottomnavigation.CarScreen
+import com.test.sharecar.presentation.bottomnavigation.TripScreen
+import com.test.sharecar.presentation.bottomnavigation.UserScreen
 
 class BrowserComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,44 +49,48 @@ fun HomeScreen() {
 @Composable
 fun BottomNavigationBar(navController: NavController) {
 
-    val items = listOf(
+    val screens = listOf(
         BottomBarScreen.Trip,
         BottomBarScreen.Cars,
         BottomBarScreen.User,
     )
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
 
-    BottomNavigation(
-        backgroundColor = Color.LightGray,
-        contentColor = Color.Black
-    ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
+    val bottomBarDestination = screens.any{it.route == currentRoute}
+    if(bottomBarDestination) {
+        BottomNavigation(
+            backgroundColor = Color.LightGray,
+            contentColor = Color.Black
+        ) {
 
-        items.forEach { item ->
-            BottomNavigationItem(
-                icon = {
-                    Icon(
-                        painter = painterResource(id = item.icon),
-                        contentDescription = item.title
-                    )
-                },
-                label = { Text(text = item.title) },
-                selectedContentColor = Color.Black,
-                unselectedContentColor = Color.Black.copy(0.4f),
-                alwaysShowLabel = true,
-                selected = currentRoute == item.route,
-                onClick = {
-                    navController.navigate(item.route) {
-                        navController.graph.startDestinationRoute?.let { route ->
-                            popUpTo(route = route) {
-                                saveState = true
+
+            screens.forEach { item ->
+                BottomNavigationItem(
+                    icon = {
+                        Icon(
+                            painter = painterResource(id = item.icon),
+                            contentDescription = item.title
+                        )
+                    },
+                    label = { Text(text = item.title) },
+                    selectedContentColor = Color.Black,
+                    unselectedContentColor = Color.Black.copy(0.4f),
+                    alwaysShowLabel = true,
+                    selected = currentRoute == item.route,
+                    onClick = {
+                        navController.navigate(item.route) {
+                            navController.graph.startDestinationRoute?.let { route ->
+                                popUpTo(route = route) {
+                                    saveState = true
+                                }
                             }
+                            launchSingleTop = true
+                            restoreState = true
                         }
-                        launchSingleTop = true
-                        restoreState = true
                     }
-                }
-            )
+                )
+            }
         }
     }
 }

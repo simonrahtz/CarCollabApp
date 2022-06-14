@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.toSize
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.test.sharecar.CustomGeoCoder
-import com.test.sharecar.Screen
+import com.test.sharecar.navigation.Screen
 import com.test.sharecar.components.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

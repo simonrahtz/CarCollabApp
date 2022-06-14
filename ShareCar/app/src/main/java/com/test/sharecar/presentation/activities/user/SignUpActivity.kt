@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.test.sharecar.databinding.ActivitySignUpBinding
+import com.test.sharecar.navigation.BrowserComposeActivity
 import com.test.sharecar.presentation.activities.BrowserActivity
-import com.test.sharecar.presentation.bottomnavigation.BrowserComposeActivity
 
 /**
  * Handles user input to complete sign up
@@ -32,7 +32,6 @@ class SignUpActivity : AppCompatActivity() {
                 binding.enterPhone.text.toString(),
                 binding.enterAddress.text.toString())
 
-            startActivity(Intent(this, BrowserActivity::class.java))
             startActivity(Intent(this, BrowserComposeActivity::class.java))
             finish()
 

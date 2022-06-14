@@ -1,4 +1,4 @@
-package com.test.sharecar
+package com.test.sharecar.navigation
 
 sealed class Screen (val route: String) {
 
