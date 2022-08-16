@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "356006616620",
+    "project_id": "carcollab-345006",
+    "storage_bucket": "carcollab-345006.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356006616620:android:fe0583738bfe500f607b89",
+        "android_client_info": {
+          "package_name": "com.test.sharecar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356006616620-64nmiiur080khqcpvfi3g3di8h49rqq9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE0yheQb5Y8MNdvrAZSfQFH9m9d4G4BHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356006616620-64nmiiur080khqcpvfi3g3di8h49rqq9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
