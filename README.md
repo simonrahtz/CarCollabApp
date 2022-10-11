@@ -1,5 +1,5 @@
 <h1>Hi 👋, I'm Simon</h1>
-<h3>A passionate frontend developer from India</h3>
+<h3>A passionate mobile developer from Australia</h3>
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
