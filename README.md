@@ -12,7 +12,7 @@ It is a prototype Android Mobile Application built by a group of students for a 
 
 ## Demonstration
 Video walkthrough: 
-<a href="https://www.youtube.com/c/https://youtu.be/l7jr3iat-wy" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="https://youtu.be/l7jr3iat-wy" height="30" width="40" /></a>
+<a href="[https://www.youtube.com/c/https://youtu.be/l7jr3iat-wy](https://youtu.be/L7JR3iaT-WY)" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="https://youtu.be/l7jr3iat-wy" height="30" width="40" /></a>
 </p>
 	
 ## Technologies
