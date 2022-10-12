@@ -10,6 +10,17 @@ It is a prototype Android Mobile Application built by a group of students for a 
 * Weihao Han
 * Shane Tate
 
+## Preview
+Here are some screenshots from the app.
+
+<p align="left">
+<img src="README_Images/app6.png" alt="screenshot1" width="150"/>
+<img src="README_Images/app8.png" alt="screenshot2" width="150"/>
+<img src="README_Images/app9.png" alt="screenshot3" width="150"/>
+<img src="README_Images/app4.png" alt="screenshot4" width="150"/>
+<img src="README_Images/app2.png" alt="screenshot5" width="150"/>
+</p>
+
 ## Demonstration
 Video walkthrough: 
 <a href="https://www.youtube.com/watch?v=L7JR3iaT-WY" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="https://youtu.be/l7jr3iat-wy" height="30" width="40" /></a>
