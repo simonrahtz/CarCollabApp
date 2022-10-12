@@ -1,4 +1,4 @@
-![CarCollabLogo](CarCollab-1.png)
+![CarCollabLogo](README_Images/CarCollab-1.png)
 
 ## General info
 CarCollab is an app that allows you to share a car between a group of friends. 
